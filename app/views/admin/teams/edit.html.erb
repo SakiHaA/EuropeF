@@ -1,0 +1,26 @@
+<h4>報編集</h4>
+
+<%= form_with model: @team, url: admin_team_path(@team.id), method: :patch do |f| %>
+  <table>
+ <tr>
+ 	<td>チーム名</td>
+	<td><%= f.text_field :name %></td>
+ </tr>
+
+ <tr>
+        <th>リーグ名</th>
+        <td><%= f.collection_select :league_id, League.all,  :id, :name  %></td>
+      </tr>
+
+ <tr>
+   <td></td>
+   <td><%= f.text_field :team_image %></td>
+ </tr>
+ <tr>
+ 	<td>概要</td>
+	<td><%= f.text_area :introduction %></td>
+	<td></td>
+	<td><%= f.submit '変更内容を保存',class: "btn btn-success" %></td>
+ </tr>
+  </table>
+  <% end %>

@@ -1,0 +1,31 @@
+<div class="container">
+  <h3>チーム追加</h3>
+  <div class="row">
+    <%= form_with model: @team, url: admin_teams_path, method: :post do |f| %>
+    <table class="table table-borderless col-sm-12">
+
+
+      <tr>
+        <th>リーグ名</th>
+        <td><%= f.collection_select :league_id, League.all,  :id, :name  %></td>
+      </tr>
+
+      <tr>
+        <th>チーム名</th>
+        <td><%= f.text_field :name %></td>
+      </tr>
+
+      <tr>
+        <th>チーム概要</th>
+        <td><%= f.text_area :introduction %></td>
+      </tr>
+
+      <tr>
+        <th>チーム画像</th>
+        <td><%= f.text_field :team_image %></td>
+      </tr>
+    </table>
+    <%= f.submit '追加', class:'btn btn-success' %>
+    <% end %>
+  </div>
+</div>

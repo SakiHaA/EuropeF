@@ -1,0 +1,33 @@
+<%= form_with model: @player, url: admin_player_path(@player.id), method: :patch do |f| %>
+  <table>
+
+     <tr>
+        <th>リーグ名</th>
+        <td><%= f.collection_select :league_id, League.all,  :id, :name  %></td>
+      </tr>
+
+      <tr>
+        <th>チーム名</th>
+        <td><%= f.collection_select :team_id, Team.all,  :id, :name  %></td>
+      </tr>
+
+ <tr>
+ 	<td>選手名</td>
+	<td><%= f.text_field :name %></td>
+ </tr>
+
+<tr>
+        <th>選手画像URL</th>
+        <td><%= f.text_field :player_image %></td>
+      </tr>
+ <tr>
+ 	<td>概要</td>
+	<td><%= f.text_area :introduction %></td>
+	<td></td>
+	<td><%= f.submit '変更内容を保存',class: "btn btn-success" %></td>
+ </tr>
+  </table>
+  <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="container">
+  <h3>選手追加</h3>
+  <div class="row">
+    <%= form_with model: @player, url: admin_players_path, method: :post do |f| %>
+    <table class="table table-borderless col-sm-12">
+      <tr>
+        <th>リーグ名</th>
+        <td><%= f.collection_select :league_id, League.all,  :id, :name  %></td>
+      </tr>
+
+      <tr>
+        <th>チーム名</th>
+        <td><%= f.collection_select :team_id, Team.all,  :id, :name  %></td>
+      </tr>
+
+ <tr>
+ 	<td>選手名</td>
+	<td><%= f.text_field :name %></td>
+ </tr>
+
+<tr>
+        <th>選手画像URL</th>
+        <td><%= f.text_field :player_image %></td>
+      </tr>
+
+
+      <tr>
+        <th>選手概要</th>
+        <td><%= f.text_area :introduction %></td>
+      </tr>
+    </table>
+
+    <%= f.submit '追加', class:'btn btn-success' %>
+    <% end %>
+  </div>
+</div>

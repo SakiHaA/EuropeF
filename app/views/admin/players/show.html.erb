@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row mb-5">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-10">
+      <label class="h4 bg-light"><%= @player.name %>の詳細</label>
+    </div>
+  </div>
+
+      <table class="table table-borderless">
+        <tbody>
+          <tr>
+            <td>画像</td>
+            <td><%= @player.player_image.html_safe %></td>
+          </tr>
+          <tr>
+            <td>選手詳細</td>
+            <td><%= @player.introduction %></td>
+          </tr>
+  </div>
+ <%= link_to "編集する", edit_admin_player_path(@player.id), class:"btn btn-success" %>
+</div>
