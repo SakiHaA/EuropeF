@@ -1,0 +1,30 @@
+<div class="container">
+  <h3>投稿追加</h3>
+  <div class="row">
+    <%= form_with model: @post, url: posts_path, method: :post do |f| %>
+    <table class="table table-borderless col-sm-12">
+
+
+      <tr>
+        <th>選手名</th>
+        <td><%= f.collection_select :player_id, Player.all,  :id, :name  %></td>
+      </tr>
+
+ <tr>
+ 	<td>teki</td>
+	<td><%= f.text_field :opponent %></td>
+ </tr>
+
+<%= f.label :stadium %><br />
+    <%= f.label :home %>
+    <%= f.radio_button :stadium, :home %>
+    <%= f.label :away %>
+    <%= f.radio_button :stadium, :away %>
+  </div>
+
+      </table>
+
+    <%= f.submit '追加', class:'btn btn-success' %>
+    <% end %>
+  </div>
+</div>

@@ -9,16 +9,21 @@ Rails.application.routes.draw do
   sessions: "admin/sessions"
 }
 
-  scope module: :public do
-    root to: 'homes#top'
-    get 'about' => 'homes#about'
-  end
-
   namespace :admin do
     root to: "homes#top"
     resources :leagues,  only: [:index, :new, :create, :show, :edit, :update, :destroy]
     resources :teams, only: [:index, :new, :create, :show, :edit, :update, :destroy]
     resources :players, only: [:index, :new, :create, :show, :edit, :update, :destroy]
   end
+
+  scope module: :public do
+    root to: 'homes#top'
+    get 'about' => 'homes#about'
+    resources :leagues,  only: [:index, :new, :create, :show, :edit, :update, :destroy]
+    resources :teams, only: [:index, :new, :create, :show, :edit, :update, :destroy]
+    resources :players, only: [:index, :new, :create, :show, :edit, :update, :destroy]
+    resources :posts, only: [:index, :new, :create, :show, :edit, :update, :destroy]
+  end
+
 
 end

@@ -1,0 +1,40 @@
+<div class ="container">
+  <div class ="title">
+    <div class ="row">
+      <h3 class ="bg-light col-md-2 text-center">リーグ一覧</h3>
+    </div>
+    <div class ="row">
+      <h3 class= "col-12 text-right">
+        <%= link_to new_league_path do %>
+        <span class ="rounded-circle" id="circle" >＋</span>
+        <% end %>
+      </h3>
+    </div>
+  </div>
+
+  <div class ="body">
+    <div class ="row">
+    <table class ="table table-borderless border-top border-bottom">
+      <thead class ="bg-light">
+        <tr>
+          <th style="width: 25%">リーグ名</th>
+          <th style="width: 40%">エンブレム</th>
+          <th style="width: 35%">概要</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @leagues.each do |league| %>
+        <tr>
+          <td class="align-bottom">
+            <%= link_to league_path(league.id) do %>
+              <span class ="text-dark border-bottom border-dark"><%= league.name %></span>
+            <% end %>
+          </td>
+          <td class="align-bottom"><%= league.league_image.html_safe %></td>
+          <td class="align-bottom"><%= league.introduction %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

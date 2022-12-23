@@ -1,0 +1,27 @@
+<div class ="title">
+    <h3 class="bg-light col-md-2 text-center">のスレッド</h3>
+    <h3 class=" text-right">
+      <%= link_to new_post_path do %>
+      <span class ="text-body shadow-sm rounded-circle">＋</span>
+      <% end %>
+    </h3>
+  </div>
+
+  <div class ="row">
+    <table class ="table table-borderless border-top border-bottom">
+      <thead class ="bg-light">
+        <tr>
+          <th>選手名</th>
+        </tr>
+      </thead>
+       </table>
+        <% @posts.each do |post| %>
+
+
+          <%= post.stadium %>
+          <%= post.contents %>
+         <% end %>
+
+
+  </div>
+</div>

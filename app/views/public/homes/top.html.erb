@@ -1,17 +1,17 @@
 asertyhjあｓｓｄｆｂｇｆｄｓｆｇｈｇｆｄｓｓｄｆｃｖｂんｖｘ
 
-            <%= link_to admin_leagues_path do %>
+            <%= link_to leagues_path do %>
               <span class ="text-body border-bottom border-dark">リーグ</span>
             <% end %>
 
-            <%= link_to admin_teams_path do %>
+            <%= link_to teams_path do %>
               <span class ="text-body border-bottom border-dark">チーム</span>
             <% end %>
 
 
 
-            <%= link_to admin_players_path do %>
+            <%= link_to players_path do %>
               <span class ="text-body border-bottom border-dark">選手</span>
             <% end %>
-            
-            <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
