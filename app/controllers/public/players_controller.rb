@@ -7,6 +7,11 @@ class Public::PlayersController < ApplicationController
     @player = Player.new
   end
 
+  def show
+    @player = Player.find(params[:id])
+    @post = Post.new
+  end
+
 
   def create
     @player = Player.new(player_params)

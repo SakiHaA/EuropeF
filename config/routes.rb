@@ -13,7 +13,9 @@ Rails.application.routes.draw do
     root to: "homes#top"
     resources :leagues,  only: [:index, :new, :create, :show, :edit, :update, :destroy]
     resources :teams, only: [:index, :new, :create, :show, :edit, :update, :destroy]
-    resources :players, only: [:index, :new, :create, :show, :edit, :update, :destroy]
+    resources :players, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
+      resources :posts, only: [:create, :destroy]
+    end
   end
 
   scope module: :public do
@@ -21,9 +23,13 @@ Rails.application.routes.draw do
     get 'about' => 'homes#about'
     resources :leagues,  only: [:index, :new, :create, :show, :edit, :update, :destroy]
     resources :teams, only: [:index, :new, :create, :show, :edit, :update, :destroy]
-    resources :players, only: [:index, :new, :create, :show, :edit, :update, :destroy]
-    resources :posts, only: [:index, :new, :create, :show, :edit, :update, :destroy]
+    resources :users, only: [:show, :edit, :update, :destroy]
+    resources :players, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
+      resources :posts, only: [:create, :destroy]
+    end
+    get 'search' => 'posts#search'
   end
+
 
 
 end

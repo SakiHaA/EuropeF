@@ -16,7 +16,10 @@ class Admin::PlayersController < ApplicationController
 
   def show
     @player = Player.find(params[:id])
+    @post = Post.new
   end
+
+
 
   def destroy
     @player = Player.find(params[:id])

@@ -1,7 +1,8 @@
-<div class ="container">
+<div class="py-4">
+  <div class ="container">
   <div class ="title">
     <div class ="row">
-      <h3 class ="bg-light col-md-2 text-center">リーグ一覧</h3>
+      <h2><span class="text-dark">リーグ一覧</span></h2>
     </div>
     <div class ="row">
       <h3 class= "col-12 text-right">
@@ -15,26 +16,28 @@
   <div class ="body">
     <div class ="row">
     <table class ="table table-borderless border-top border-bottom">
-      <thead class ="bg-light">
-        <tr>
-          <th style="width: 25%">リーグ名</th>
-          <th style="width: 40%">エンブレム</th>
-          <th style="width: 35%">概要</th>
-        </tr>
-      </thead>
+
       <tbody>
         <% @leagues.each do |league| %>
         <tr>
           <td class="align-bottom">
             <%= link_to admin_league_path(league.id) do %>
-              <span class ="text-dark border-bottom border-dark"><%= league.name %></span>
+              <span class ="text-dark align-bottom"><%= league.name %></span>
             <% end %>
           </td>
-          <td class="align-bottom"><%= league.league_image.html_safe %></td>
-          <td class="align-bottom"><%= league.introduction %></td>
+          <td class="align-bottom w-50"><%= league.league_image.html_safe %></td>
+          <td class="align-bottom">
+            <%= link_to admin_league_path(league.id) do %>
+              <span class ="text-dark border-bottom align-bottom">>><%= league.name %>の詳細へ</span>
+            <% end %>
+          </td>
         </tr>
         <% end %>
       </tbody>
     </table>
+    </div>
+  </div>
+  <div class ="row">
+    <%= link_to "トップページへ", admin_root_path, class:"btn btn-secondary" %>
   </div>
 </div>
