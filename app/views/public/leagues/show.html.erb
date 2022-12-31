@@ -1,0 +1,41 @@
+<div class="py-4">
+  <div class="container">
+    <div class ="row">
+      <div class="col-8">
+        <h2><span class="text-dark"><%= @league.league_name %></span></h2>
+      </div>
+    </div>
+
+    <div class="row">
+      <table class ="table table-borderless border-top border-bottom">
+        <tbody>
+          <tr>
+            <td><%= @league.league_image.html_safe %></td>
+          　<td class ="align-bottom"><%= @league.league_introduction %></td>
+        　</tr>
+      　</tbody>
+      </table>
+    </div>
+
+    <div class="row">
+      <table class ="table table-borderless border-top border-bottom">
+        <tbody>
+          <% @teams.each do |team| %>
+          <tr>
+            <td class="align-bottom">
+              <%= link_to team_path(team.id) do %>
+                <span class ="text-body border-bottom border-dark"><%= team.team_name %></span>
+              <% end %>
+            </td>
+            <td><%= team.team_image.html_safe %></td>
+            <td><%= team.team_introduction %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+      <div class="text-center">
+    　   <%= link_to "リーグ一覧へ戻る",leagues_path, class:"btn btn-secondary" %>
+      </div>
+  </div>
+</div>

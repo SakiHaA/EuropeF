@@ -1,29 +1,45 @@
-<div class ="container">
-  <div class ="row">
-    <h3 class="col-md-4 text-center"><%= @league.name %></h3>
+<div class="py-4">
+  <div class="container">
+    <div class ="row">
+      <div class="col-8">
+        <h2><span class="text-dark"><%= @league.league_name %></span></h2>
+      </div>
+      <div class="col-4">
+        <%= link_to "リーグ情報の編集", edit_admin_league_path(@league.id), class: "btn btn-success" %>
+        <%= link_to "リーグを削除する", admin_league_path(@league.id), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に削除しますか？削除した場合、このリーグに属するチームもすべて削除されます。" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <table class ="table table-borderless border-top border-bottom">
+        <tbody>
+          <tr>
+            <td><%= @league.league_image.html_safe %></td>
+          　<td class ="align-bottom"><%= @league.league_introduction %></td>
+        　</tr>
+      　</tbody>
+      </table>
+    </div>
+
+    <div class="row">
+      <table class ="table table-borderless border-top border-bottom">
+        <tbody>
+          <% @teams.each do |team| %>
+          <tr>
+            <td class="align-bottom">
+              <%= link_to admin_team_path(team.id) do %>
+                <span class ="text-body border-bottom border-dark"><%= team.team_name %></span>
+              <% end %>
+            </td>
+            <td><%= team.team_image.html_safe %></td>
+            <td><%= team.team_introduction %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+      <div class="text-center">
+    　   <%= link_to "リーグ一覧へ戻る", admin_leagues_path, class:"btn btn-secondary" %>
+      </div>
   </div>
-
-  <div class ="row">
-    <div class ="col-md-4 text-center">概要</div>
-    <div class ="col-md-8 text-center"><%= @league.introduction %></div>
-  </div>
-
-  <div class ="row">
-    <%= link_to "編集する", edit_admin_league_path(@league.id), class: "btn btn-success" %>
-    <%= link_to "削除する", admin_league_path(@league.id), method: :DELETE, class: "btn btn-danger" %>
-    <%= link_to "リーグ一覧へ戻る", admin_leagues_path, class: "btn btn-success" %>
-  </div>
-
-  <% @teams.each do |team| %>
-    <tr>
-          <td>
-            <%= link_to admin_team_path(team.id) do %>
-              <span class ="text-body border-bottom border-dark"><%= team.name %></span>
-            <% end %>
-          </td>
-          <td><%= team.team_image.html_safe %></td>
-          <td><%= team.introduction %></td>
-        </tr>
-
-  <% end %>
 </div>

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: "homes#top"
+    resources :users,  only: [:index, :new, :create, :show, :edit, :update, :destroy]
     resources :leagues,  only: [:index, :new, :create, :show, :edit, :update, :destroy]
     resources :teams, only: [:index, :new, :create, :show, :edit, :update, :destroy]
     resources :players, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
@@ -21,7 +22,7 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: 'homes#top'
     get 'about' => 'homes#about'
-    resources :leagues,  only: [:index, :new, :create, :show, :edit, :update, :destroy]
+    resources :leagues,  only: [:index, :show]
     resources :teams, only: [:index, :new, :create, :show, :edit, :update, :destroy]
     resources :users, only: [:show, :edit, :update, :destroy]
     resources :players, only: [:index, :new, :create, :show, :edit, :update, :destroy] do

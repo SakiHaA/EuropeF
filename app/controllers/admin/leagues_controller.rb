@@ -1,4 +1,5 @@
 class Admin::LeaguesController < ApplicationController
+  before_action :move_to_signed_in, except: [:index,:show]
   def index
     @leagues = League.all
   end
@@ -10,8 +11,11 @@ class Admin::LeaguesController < ApplicationController
 
   def create
     @league = League.new(league_params)
-    @league.save
-    redirect_to admin_leagues_path
+    if @league.save
+      redirect_to admin_leagues_path(@league.id)
+    else
+      render :new
+    end
   end
 
   def edit
@@ -21,7 +25,6 @@ class Admin::LeaguesController < ApplicationController
   def show
     @league = League.find(params[:id])
     @teams = @league.teams
-    # pp "teams", @teams
   end
 
   def update
@@ -41,6 +44,13 @@ class Admin::LeaguesController < ApplicationController
 
   private
   def league_params
-    params.require(:league).permit(:name, :league_image, :introduction)
+    params.require(:league).permit(:league_name, :league_image, :league_introduction)
+  end
+
+  #管理人サインインしてない場合ログイン画面に行くメソッド
+  def move_to_signed_in
+    unless admin_signed_in?
+      redirect_to  new_admin_session_path
+    end
   end
 end

@@ -3,9 +3,9 @@ class CreateTeams < ActiveRecord::Migration[6.1]
     create_table :teams do |t|
 
       t.integer :league_id
-      t.string :name, null: false
-      t.text :team_image, null: false
-      t.text :introduction, null: false
+      t.string :team_name
+      t.text :team_image
+      t.text :team_introduction
       t.timestamps
     end
   end

@@ -2,13 +2,15 @@ class Public::LeaguesController < ApplicationController
   def index
     @leagues = League.all
   end
-
-  def new
-    @league = League.new
+  
+  def show
+    @league = League.find(params[:id])
+    @teams = @league.teams
   end
+
 
   private
   def league_params
-    params.require(:league).permit(:name, :league_image, :introduction)
+    params.require(:league).permit(:league_name, :league_image, :league_introduction)
   end
 end

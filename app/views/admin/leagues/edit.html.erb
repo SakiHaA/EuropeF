@@ -1,28 +1,31 @@
-<div class ="container">
-  <div class ="title">
-    <h4 class ="bg-light ml-5">リーグ情報編集</h4>
+<div class="py-4">
+  <div class="container">
+    <div class ="row">
+      <h2><span class="text-dark">リーグ編集</span></h2>
+    </div>
+
+    <div class="row">
+      <%= form_with model: @league, url: admin_league_path(@league.id), method: :patch do |f| %>
+      <table class="table table-borderless">
+        <tr>
+          <td>リーグ名</td>
+          <td><%= f.text_field :league_name, class: "form-control" %></td>
+        </tr>
+        <tr>
+          <td>リーグ概要文</td>
+          <td><%= f.text_area :league_introduction, class: "form-control" %></td>
+        </tr>
+        <tr>
+         <td>リーグ画像(gettyなどの埋め込み画像のhtml)</td>
+         <td><%= f.text_field :league_image, class: "form-control" %></td>
+        </tr>
+      </table>
+      <div class="text-center">
+        <%= f.submit '編集を完了する', class:'btn btn-primary' %>
+        <%= link_to "リーグの詳細画面へ戻る", admin_league_path(@league.id), class:"btn btn-secondary" %>
+        <% end %>
+      </div>
+    </div>
   </div>
-  <div class ="row mt-4">
-    <div class ="col-md-10">
-
-    <%= form_with model: @league, url: admin_league_path(@league.id), method: :patch do |f| %>
-    <table class="table table-borderless col-sm-12">
-      <tr>
-        <th>リーグ名</th>
-        <td><%= f.text_field :name %></td>
-      </tr>
-      <tr>
-        <th>リーグ概要</th>
-        <td><%= f.text_area :introduction %></td>
-      </tr>
-
-      <tr>
-        <th>リーグ画像</th>
-        <td><%= f.text_field :league_image %></td>
-      </tr>
-    </table>
-    <%= f.submit '追加', class:'btn btn-success' %>
-    <% end %>
-
 </div>
 

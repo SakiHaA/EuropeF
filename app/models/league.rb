@@ -1,9 +1,9 @@
 class League < ApplicationRecord
-  validates :name, presence: true
-  validates :introduction, presence: true
-  has_many :teams
-  has_many :players
-  
+  validates :league_name, presence: true
+  validates :league_introduction, presence: true
+  has_many :teams, dependent: :destroy
+  has_many :players, dependent: :destroy
+
   def self.looks(search, word)
     if search == "perfect_match"
       @league = League.where("title LIKE?","#{word}")

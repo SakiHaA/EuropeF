@@ -68,9 +68,9 @@ ActiveRecord::Schema.define(version: 2022_12_24_181518) do
   end
 
   create_table "leagues", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "league_name"
     t.text "league_image"
-    t.text "introduction", null: false
+    t.text "league_introduction"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -78,9 +78,9 @@ ActiveRecord::Schema.define(version: 2022_12_24_181518) do
   create_table "players", force: :cascade do |t|
     t.integer "league_id"
     t.integer "team_id"
-    t.string "name", null: false
-    t.text "player_image", null: false
-    t.text "introduction", null: false
+    t.string "player_name"
+    t.text "player_image"
+    t.text "player_introduction"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -97,9 +97,9 @@ ActiveRecord::Schema.define(version: 2022_12_24_181518) do
 
   create_table "teams", force: :cascade do |t|
     t.integer "league_id"
-    t.string "name", null: false
-    t.text "team_image", null: false
-    t.text "introduction", null: false
+    t.string "team_name"
+    t.text "team_image"
+    t.text "team_introduction"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
