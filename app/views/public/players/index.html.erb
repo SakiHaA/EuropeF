@@ -1,36 +1,40 @@
-  <div class ="title">
-    <h3 class="bg-light col-md-2 text-center">選手一覧</h3>
-    <h3 class=" text-right">
-      <%= link_to new_player_path do %>
-      <span class ="text-body shadow-sm rounded-circle">＋</span>
-      <% end %>
-    </h3>
-  </div>
-
-  <div class ="row">
-    <table class ="table table-borderless border-top border-bottom">
-      <thead class ="bg-light">
-        <tr>
-          <th>選手名</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @players.each do |player| %>
-        <tr>
-          <td>
-
-              <%= link_to admin_player_path(player.id) do %>
-      　　　　　　　<span class ="text-body shadow-sm rounded-circle"><%= player.name %></span>
-      　　　　　　<% end %>
-              <span class ="text-body border-bottom border-dark"></span>
-              <span class ="text-body border-bottom border-dark"><%= player.player_image.html_safe %></span>
-          </td>
-        </tr>
+<div class="py-4">
+  <div class="container">
+    <div class="row">
+      <h2><span class="text-dark">選手一覧</span></h2>
+    </div>
+    <div class="row">
+      <h5 class="col-12 text-right">
+        <%= link_to new_player_path do %>
+        <span class="primary">＋リーグを追加する</span>
         <% end %>
+      </h5>
+    </div>
 
+    <div class="row">
+      <table class="table table-borderless border-top border-bottom">
+        <tbody>
+          <% @players.each do |player| %>
+          <tr>
+            <td class="align-bottom">
+              <span class="text-dark align-bottom"><%= player.player_name %></span>
+            </td>
+            <td class="align-bottom w-50"><%= player.player_image.html_safe %></td>
+            <td class="align-bottom">
+              <%= link_to player_path(player.id) do %>
+                <span class="text-dark border-bottom align-bottom">
+                  >><%= player.player_name %>の詳細へ
+                </span>
+              <% end %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
 
-      </tbody>
-    </table>
-
+      <div class="text-center">
+        <%= link_to "トップページへ", root_path, class:"btn btn-secondary" %>
+      </div>
   </div>
 </div>

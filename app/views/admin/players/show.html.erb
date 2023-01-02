@@ -1,34 +1,36 @@
-<div class="container">
-  <div class="row mb-5">
-    <div class="col-lg-10">
-      <label class="h4 bg-light"><%= @player.name %></label>
+<div class="py-4">
+  <div class="container">
+    <div class ="row">
+      <div class="col-8">
+        <h2><span class="text-dark"><%= @player.player_name %></span></h2>
+      </div>
+      
+      <div class="col-4">
+        <%= link_to "選手情報の編集", edit_admin_player_path(@player.id), class: "btn btn-success" %>
+        <%= link_to "選手を削除する", admin_player_path(@player.id), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に削除しますか？削除した場合、この選手に関する投稿やコメントすべてが削除されます。" %>
+      </div>
     </div>
-  </div>
 
-      <table class="table table-borderless">
+      <table class ="table table-borderless border-top border-bottom">
         <tbody>
           <tr>
-            <td>画像</td>
             <td><%= @player.player_image.html_safe %></td>
           </tr>
-          <tr>
-            <td>選手詳細</td>
-            <td><%= @player.introduction %></td>
-          </tr>
+      　</tbody>
       </table>
- <%= link_to "編集する", edit_admin_player_path(@player.id), class:"btn btn-success" %>
-</div>
+
+    <div class="row">
+      <div class="text-center">
+        <%= @player.player_introduction %>
+      </div>
+    </div>
 
 
 
 
 
+    <div class="text-center">
+      <%= link_to "選手一覧へ戻る", admin_players_path, class:"btn btn-secondary" %>
+    </div>
   </div>
 </div>
-
-  <p>コメント件数：<%= @player.posts.count %></p>
-  <% @player.posts.each do |post| %>
-    <%= post.user.name %>
-    <%= post.created_at.strftime('%Y/%m/%d') %>
-    <%= post.content %>
-  <% end %>

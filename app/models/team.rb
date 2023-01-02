@@ -1,6 +1,9 @@
 class Team < ApplicationRecord
+  validates :team_name, presence: true
+  validates :team_introduction, presence: true
   belongs_to :league
-  has_many :players
+  has_many :players, dependent: :destroy
+  
   
   def self.looks(search, word)
     if search == "perfect_match"

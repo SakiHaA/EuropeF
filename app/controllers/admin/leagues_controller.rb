@@ -1,5 +1,5 @@
 class Admin::LeaguesController < ApplicationController
-  before_action :move_to_signed_in, except: [:index,:show]
+  before_action :move_to_signed_in
   def index
     @leagues = League.all
   end
@@ -47,7 +47,7 @@ class Admin::LeaguesController < ApplicationController
     params.require(:league).permit(:league_name, :league_image, :league_introduction)
   end
 
-  #管理人サインインしてない場合ログイン画面に行くメソッド
+  #管理人がサインインしてない場合ログイン画面に行くメソッド
   def move_to_signed_in
     unless admin_signed_in?
       redirect_to  new_admin_session_path

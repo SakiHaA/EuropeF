@@ -1,26 +1,36 @@
-<h4>報編集</h4>
+<div class="py-4">
+  <div class="container">
+    <div class ="row">
+      <h2><span class="text-dark">チーム編集</span></h2>
+    </div>
 
-<%= form_with model: @team, url: admin_team_path(@team.id), method: :patch do |f| %>
-  <table>
- <tr>
- 	<td>チーム名</td>
-	<td><%= f.text_field :name %></td>
- </tr>
-
- <tr>
-        <th>リーグ名</th>
-        <td><%= f.collection_select :league_id, League.all,  :id, :name  %></td>
-      </tr>
-
- <tr>
-   <td></td>
-   <td><%= f.text_field :team_image %></td>
- </tr>
- <tr>
- 	<td>概要</td>
-	<td><%= f.text_area :introduction %></td>
-	<td></td>
-	<td><%= f.submit '変更内容を保存',class: "btn btn-success" %></td>
- </tr>
-  </table>
-  <% end %>
+    <div class="row">
+      <%= form_with model: @team, url: admin_team_path(@team.id), method: :patch do |f| %>
+      <table class="table table-borderless">
+        <tr>
+          <td>リーグ名</td>
+          <td><%= f.collection_select :league_id, League.all,  :id, :league_name  %></td>
+        </tr>
+        <tr>
+          <td>チーム名</td>
+          <td><%= f.text_field :team_name, class: "form-control" %></td>
+        </tr>
+        <tr>
+          <td>チーム概要文</td>
+          <td><%= f.text_area :team_introduction, rows: 7, class: "form-control" %></td>
+        </tr>
+        <tr>
+         <td>チーム画像(gettyなどの埋め込み画像のhtml)</td>
+         <td><%= f.text_field :team_image, class: "form-control" %></td>
+        </tr>
+        <tr>
+          <td>
+            <%= f.submit '編集を完了する', class:'btn btn-primary' %>
+              <% end %>
+          </td>
+          <td><%= link_to "チームの詳細画面へ戻る", admin_team_path(@team.id), class:"btn btn-secondary" %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

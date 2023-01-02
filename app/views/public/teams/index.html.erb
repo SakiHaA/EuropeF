@@ -1,0 +1,40 @@
+<div class="py-4">
+  <div class="container">
+    <div class="row">
+      <h2><span class="text-dark">チーム一覧</span></h2>
+    </div>
+    <div class="row">
+      <h5 class="col-12 text-right">
+        <%= link_to new_team_path do %>
+        <span class="primary">＋チームを追加する</span>
+        <% end %>
+      </h5>
+    </div>
+
+    <div class="row">
+      <table class="table table-borderless border-top border-bottom">
+        <tbody>
+          <% @teams.each do |team| %>
+          <tr>
+            <td class="align-bottom">
+              <span class="text-dark align-bottom"><%= team.team_name %></span>
+            </td>
+            <td class="align-bottom w-50"><%= team.team_image.html_safe %></td>
+            <td class="align-bottom">
+              <%= link_to team_path(team.id) do %>
+                <span class="text-dark border-bottom align-bottom">
+                  >><%= team.team_name %>の詳細へ
+                </span>
+              <% end %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+      <div class="text-center">
+        <%= link_to "トップページへ", root_path, class:"btn btn-secondary" %>
+      </div>
+  </div>
+</div>

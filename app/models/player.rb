@@ -1,7 +1,8 @@
 class Player < ApplicationRecord
+  validates :player_name, presence: true
+  validates :player_introduction, presence: true
   belongs_to :team
   belongs_to :league
-  has_many :posts
   
   def self.looks(search, word)
     if search == "perfect_match"

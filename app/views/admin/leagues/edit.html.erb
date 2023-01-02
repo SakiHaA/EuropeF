@@ -13,18 +13,22 @@
         </tr>
         <tr>
           <td>リーグ概要文</td>
-          <td><%= f.text_area :league_introduction, class: "form-control" %></td>
+          <td><%= f.text_area :league_introduction, rows: 7, class: "form-control" %></td>
         </tr>
         <tr>
          <td>リーグ画像(gettyなどの埋め込み画像のhtml)</td>
          <td><%= f.text_field :league_image, class: "form-control" %></td>
         </tr>
+        <tr>
+          <td>
+            <%= f.submit '編集を完了する', class:'btn btn-primary' %>
+              <% end %>
+          </td>
+          <td>
+            <%= link_to "リーグの詳細画面へ戻る", admin_league_path(@league.id), class:"btn btn-secondary" %>
+          </td>
+        </tr>
       </table>
-      <div class="text-center">
-        <%= f.submit '編集を完了する', class:'btn btn-primary' %>
-        <%= link_to "リーグの詳細画面へ戻る", admin_league_path(@league.id), class:"btn btn-secondary" %>
-        <% end %>
-      </div>
     </div>
   </div>
 </div>

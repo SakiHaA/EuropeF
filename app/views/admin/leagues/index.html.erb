@@ -3,10 +3,11 @@
     <div class="row">
       <h2><span class="text-dark">リーグ一覧</span></h2>
     </div>
+
     <div class="row">
       <h5 class="col-12 text-right">
         <%= link_to new_admin_league_path do %>
-        <span class="primary">＋リーグを追加する</span>
+          <span class="primary">＋リーグを追加する</span>
         <% end %>
       </h5>
     </div>
@@ -22,7 +23,9 @@
             <td class="align-bottom w-50"><%= league.league_image.html_safe %></td>
             <td class="align-bottom">
               <%= link_to admin_league_path(league.id) do %>
-              <span class="text-dark border-bottom align-bottom">>><%= league.league_name %>の詳細へ</span>
+                <span class="text-dark border-bottom align-bottom">
+                  >><%= league.league_name %>の詳細へ
+                </span>
               <% end %>
             </td>
           </tr>

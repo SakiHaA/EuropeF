@@ -14,23 +14,17 @@ Rails.application.routes.draw do
     resources :users,  only: [:index, :new, :create, :show, :edit, :update, :destroy]
     resources :leagues,  only: [:index, :new, :create, :show, :edit, :update, :destroy]
     resources :teams, only: [:index, :new, :create, :show, :edit, :update, :destroy]
-    resources :players, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
-      resources :posts, only: [:create, :destroy]
-    end
+    resources :players, only: [:index, :new, :create, :show, :edit, :update, :destroy]
   end
 
   scope module: :public do
     root to: 'homes#top'
     get 'about' => 'homes#about'
-    resources :leagues,  only: [:index, :show]
-    resources :teams, only: [:index, :new, :create, :show, :edit, :update, :destroy]
     resources :users, only: [:show, :edit, :update, :destroy]
-    resources :players, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
-      resources :posts, only: [:create, :destroy]
-    end
-    get 'search' => 'posts#search'
+    #欧州5大リーグは5つしかないのでユーザーは追加、編集、削除不可
+    resources :leagues,  only: [:index, :show]
+    #チームと選手は100を超えるため、ユーザーも追加可能だが、悪用防止のため、編集と削除は不可
+    resources :teams, only: [:index, :new, :create, :show]
+    resources :players, only: [:index, :new, :create, :show]
   end
-
-
-
 end
