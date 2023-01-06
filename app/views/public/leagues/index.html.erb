@@ -10,12 +10,12 @@
           <% @leagues.each do |league| %>
           <tr>
             <td class="align-bottom">
-              <span class="text-dark align-bottom"><%= league.league_name %></span>
+              <span class="text-dark"><%= league.league_name %></span>
             </td>
             <td class="align-bottom w-50"><%= league.league_image.html_safe %></td>
             <td class="align-bottom">
               <%= link_to league_path(league.id) do %>
-                <span class="text-dark border-bottom align-bottom">
+                <span class="text-dark border-bottom">
                   >><%= league.league_name %>の詳細へ
                 </span>
               <% end %>
@@ -27,7 +27,7 @@
     </div>
 
       <div class="text-center">
-        <%= link_to "トップページへ", root_path, class:"btn btn-secondary" %>
+        <%= link_to "トップページへ", root_path, class: "btn btn-secondary" %>
       </div>
   </div>
 </div>

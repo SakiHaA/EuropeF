@@ -8,9 +8,13 @@ Rails.application.routes.draw do
   devise_for :admin,skip: [:registrations, :passwords],controllers: {
   sessions: "admin/sessions"
 }
+  devise_scope :user do
+    post "users/guest_sign_in", to: "users/sessions#new_guest"
+  end
 
   namespace :admin do
     root to: "homes#top"
+   
     resources :users,  only: [:index, :new, :create, :show, :edit, :update, :destroy]
     resources :leagues,  only: [:index, :new, :create, :show, :edit, :update, :destroy]
     resources :teams, only: [:index, :new, :create, :show, :edit, :update, :destroy]
@@ -20,11 +24,15 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: 'homes#top'
     get 'about' => 'homes#about'
-    resources :users, only: [:show, :edit, :update, :destroy]
-    #欧州5大リーグは5つしかないのでユーザーは追加、編集、削除不可
+    
+    resources :users, only: [:index, :show, :edit, :update, :destroy]
     resources :leagues,  only: [:index, :show]
-    #チームと選手は100を超えるため、ユーザーも追加可能だが、悪用防止のため、編集と削除は不可
-    resources :teams, only: [:index, :new, :create, :show]
-    resources :players, only: [:index, :new, :create, :show]
+    resources :teams, only: [:index, :show]
+    resources :players, only: [:index, :show] do
+      resources :posts, only: [:index, :new, :create, :destroy, :show] do
+        resources :comments, only: [:create, :destroy]
+        resources :favorites, only: [:create, :destroy]
+      end
+    end
   end
 end

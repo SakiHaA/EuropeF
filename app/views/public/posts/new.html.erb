@@ -1,0 +1,46 @@
+<div class="py-4">
+  <div class="container">
+    <div class ="row">
+      <h2><span class="text-dark"><%= @player.player_name %>のレビュー</span></h2>
+    </div>
+
+
+
+    <div class="row">
+      <%= form_with model: [@player,@post] do |f| %>
+      <table class ="table table-borderless">
+
+        <tr>
+          <td>選手名</td>
+          <td><%= f.collection_select :player_id, Player.all,  :id, :player_name  %></td>
+        </tr>
+        <tr>
+          <td>対戦相手</td>
+          <td><%= f.text_field :opponent, class: "form-control" %></td>
+        </tr>
+        <tr>
+          <td>内容</td>
+          <td><%= f.text_area :contents, rows: 7, class: "form-control" %></td>
+        </tr>
+        <tr>
+          <td>スタジアム</td>
+          <td>
+              <%= f.label :home %>
+            　<%= f.radio_button :stadium, :home %>
+            　<%= f.label :away %>
+            　<%= f.radio_button :stadium, :away %>
+    　     </td>
+        </tr>
+        <tr>
+          <td>
+          <%= f.submit "追加を完了する", class: "btn btn-primary" %>
+    　         <% end %>
+    　     </td>
+          <td>
+            <%= link_to "選手の一覧画面へ戻る", players_path, class: "btn btn-secondary" %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

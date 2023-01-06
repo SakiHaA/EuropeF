@@ -3,13 +3,6 @@
     <div class="row">
       <h2><span class="text-dark">選手一覧</span></h2>
     </div>
-    <div class="row">
-      <h5 class="col-12 text-right">
-        <%= link_to new_player_path do %>
-        <span class="primary">＋リーグを追加する</span>
-        <% end %>
-      </h5>
-    </div>
 
     <div class="row">
       <table class="table table-borderless border-top border-bottom">
@@ -17,7 +10,7 @@
           <% @players.each do |player| %>
           <tr>
             <td class="align-bottom">
-              <span class="text-dark align-bottom"><%= player.player_name %></span>
+              <span class="text-dark "><%= player.player_name %></span>
             </td>
             <td class="align-bottom w-50"><%= player.player_image.html_safe %></td>
             <td class="align-bottom">
@@ -34,7 +27,7 @@
     </div>
 
       <div class="text-center">
-        <%= link_to "トップページへ", root_path, class:"btn btn-secondary" %>
+        <%= link_to "トップページへ", root_path, class: "btn btn-secondary" %>
       </div>
   </div>
 </div>

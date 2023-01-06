@@ -1,9 +1,10 @@
 class Player < ApplicationRecord
   validates :player_name, presence: true
   validates :player_introduction, presence: true
+  has_many :posts, dependent: :destroy
   belongs_to :team
   belongs_to :league
-  
+
   def self.looks(search, word)
     if search == "perfect_match"
       @player = Player.where("name LIKE?", "#{word}")

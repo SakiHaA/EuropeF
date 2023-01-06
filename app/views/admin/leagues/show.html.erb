@@ -4,7 +4,7 @@
       <div class="col-8">
         <h2><span class="text-dark"><%= @league.league_name %></span></h2>
       </div>
-      
+
       <div class="col-4">
         <%= link_to "リーグ情報の編集", edit_admin_league_path(@league.id), class: "btn btn-success" %>
         <%= link_to "リーグを削除する", admin_league_path(@league.id), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に削除しますか？削除した場合、このリーグに属するチームもすべて削除されます。" %>
@@ -18,7 +18,7 @@
           </tr>
       　</tbody>
       </table>
-      
+
     <div class="row">
       <div class="text-center">
         <%= @league.league_introduction %>
@@ -31,12 +31,12 @@
           <% @teams.each do |team| %>
           <tr>
             <td class="align-bottom">
-              <span class ="text-dark align-bottom"><%= team.team_name %></span>
+              <span class ="text-dark"><%= team.team_name %></span>
             </td>
             <td class="align-bottom w-50"><%= team.team_image.html_safe %></td>
             <td class="align-bottom">
               <%= link_to admin_team_path(team.id) do %>
-                <span class="text-dark border-bottom align-bottom">
+                <span class="text-dark border-bottom">
                   >><%= team.team_name %>の詳細へ
                 </span>
               <% end %>
@@ -46,9 +46,9 @@
         </tbody>
       </table>
     </div>
-    
+
       <div class="text-center">
-    　   <%= link_to "リーグ一覧へ戻る", admin_leagues_path, class:"btn btn-secondary" %>
+    　   <%= link_to "リーグ一覧へ戻る", admin_leagues_path, class: "btn btn-secondary" %>
       </div>
   </div>
 </div>

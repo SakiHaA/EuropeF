@@ -1,17 +1,56 @@
-asertyhjあｓｓｄｆｂｇｆｄｓｆｇｈｇｆｄｓｓｄｆｃｖｂんｖｘ
-
-            <%= link_to leagues_path do %>
-              <span class ="text-body border-bottom border-dark">リーグ</span>
-            <% end %>
-
-            <%= link_to teams_path do %>
-              <span class ="text-body border-bottom border-dark">チーム</span>
-            <% end %>
-
-
-
-            <%= link_to players_path do %>
-              <span class ="text-body border-bottom border-dark">選手</span>
-            <% end %>
-
-            <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+<div class="py-4">
+  <div class="container">
+    <div class="row">
+      <h2><span class="text-dark">選手のスレッドを探す</span></h2>
+    </div>
+    
+    <div class="row">
+      <table class="table table-borderless border-top border-bottom">
+        <tbody>
+          <tr>
+            <td class="align-bottom w-75">
+              <span class="text-dark">
+                <a id='80WUJuf1TW1EDl3Ug9j5Fg' class='gie-single' href='http://www.gettyimages.com/detail/1438197031' target='_blank' style='color:#a7a7a7;text-decoration:none;font-weight:normal !important;border:none;display:inline-block;'>Embed from Getty Images</a><script>window.gie=window.gie||function(c){(gie.q=gie.q||[]).push(c)};gie(function(){gie.widgets.load({id:'80WUJuf1TW1EDl3Ug9j5Fg',sig:'nul2FNeJnuGWV-g7CeU6pTGJW14tbxlTkFsZq2F1k_g=',w:'594px',h:'395px',items:'1438197031',caption: true ,tld:'com',is360: false })});</script><script src='//embed-cdn.gettyimages.com/widgets.js' charset='utf-8' async></script>
+              </span>
+            </td>
+            <td class="align-bottom w-25">
+              <%= link_to leagues_path do %>
+                <span class="text-dark border-bottom">
+                  >>欧州リーグ一覧から探す</td>
+                </span>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td class="align-bottom w-75">
+              <span class="text-dark">
+                <a id='oR1D24jDQRZx6Q4fXWMofA' class='gie-single' href='http://www.gettyimages.com/detail/1453870740' target='_blank' style='color:#a7a7a7;text-decoration:none;font-weight:normal !important;border:none;display:inline-block;'>Embed from Getty Images</a><script>window.gie=window.gie||function(c){(gie.q=gie.q||[]).push(c)};gie(function(){gie.widgets.load({id:'oR1D24jDQRZx6Q4fXWMofA',sig:'heBXavX93RXKNfyQmCDA4z7WT0gPI7qDPQg-6hg2aUk=',w:'594px',h:'415px',items:'1453870740',caption: true ,tld:'com',is360: false })});</script><script src='//embed-cdn.gettyimages.com/widgets.js' charset='utf-8' async></script>
+              </span>
+            </td>
+            <td class="align-bottom w-25">
+              <%= link_to teams_path do %>
+                <span class="text-dark border-bottom">
+                  >>欧州リーグのチーム一覧から探す</td>
+                </span>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td class="align-bottom">
+              <span class="text-dark w-75">
+                <a id='R1Tt34_kQpZghj0jUxYWeQ' class='gie-single' href='http://www.gettyimages.com/detail/1438457988' target='_blank' style='color:#a7a7a7;text-decoration:none;font-weight:normal !important;border:none;display:inline-block;'>Embed from Getty Images</a><script>window.gie=window.gie||function(c){(gie.q=gie.q||[]).push(c)};gie(function(){gie.widgets.load({id:'R1Tt34_kQpZghj0jUxYWeQ',sig:'sfJNHkvuIs3mp718GMkYgvKTAAjtA2mFXEZq4IMWvnk=',w:'594px',h:'396px',items:'1438457988',caption: true ,tld:'com',is360: false })});</script><script src='//embed-cdn.gettyimages.com/widgets.js' charset='utf-8' async></script>
+              </span>
+            </td>
+            <td class="align-bottom w-25">
+              <%= link_to players_path do %>
+                <span class="text-dark border-bottom">
+                  >>欧州リーグの選手一覧から探す</td>
+                </span>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

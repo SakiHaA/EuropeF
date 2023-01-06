@@ -1,5 +1,5 @@
 class Public::PlayersController < ApplicationController
-  before_action :move_to_signed_in, except: [:index,:show]
+  before_action :move_to_signed_in
   def index
     @players = Player.all
   end
