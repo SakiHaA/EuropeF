@@ -10,12 +10,11 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :comments, dependent: :destroy
 
-  def self.guest
-    find_or_create_by!(email: "guest@example.com") do |user|
-      user.encrypted_password = SecureRamdom.url_safe_base64
-      user.encrypted_password_confirmation = user.password.encrypted_password
-    　user.name = 'サンプル'
-
+  def self._guest
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      user.name = "guest"
+      user.password = SecureRandom.urlsafe_base64
+      user.get_profile_image.attach(io: File.open(Rails.root.join('app/assets/images/no_image.jpg')), filename: 'default-image.jpg') 
     end
   end
 

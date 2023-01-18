@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_24_181518) do
+ActiveRecord::Schema.define(version: 2023_01_09_042251) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -80,6 +80,15 @@ ActiveRecord::Schema.define(version: 2022_12_24_181518) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "player_tags", force: :cascade do |t|
+    t.integer "player_id", null: false
+    t.integer "tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["player_id"], name: "index_player_tags_on_player_id"
+    t.index ["tag_id"], name: "index_player_tags_on_tag_id"
+  end
+
   create_table "players", force: :cascade do |t|
     t.integer "league_id"
     t.integer "team_id"
@@ -92,10 +101,17 @@ ActiveRecord::Schema.define(version: 2022_12_24_181518) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "user_id"
+    t.integer "team_id"
     t.integer "player_id"
     t.integer "stadium", default: 0, null: false
-    t.string "opponent"
+    t.date "game_date"
     t.text "contents"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "position"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -124,4 +140,6 @@ ActiveRecord::Schema.define(version: 2022_12_24_181518) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "player_tags", "players"
+  add_foreign_key "player_tags", "tags"
 end

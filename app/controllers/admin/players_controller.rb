@@ -1,7 +1,7 @@
 class Admin::PlayersController < ApplicationController
   before_action :move_to_signed_in
   def index
-    @players = Player.all
+    @players = params[:tag_id].present? ? Tag.find(params[:tag_id]).players : Player.all
   end
 
   def new
@@ -39,10 +39,16 @@ class Admin::PlayersController < ApplicationController
     @player.destroy
     redirect_to admin_players_path
   end
+  
+  def search
+    @players = Player.search(params[:keyword])
+    @keyword = params[:keyword]
+    render "index"
+  end
 
   private
   def player_params
-    params.require(:player).permit(:league_id, :team_id, :player_name, :player_image, :player_introduction)
+    params.require(:player).permit(:league_id, :team_id, :player_name, :player_image, :player_introduction, tag_ids: [])
   end
 
    #管理人がサインインしてない場合ログイン画面に行くメソッド

@@ -24,6 +24,16 @@
         <%= @team.team_introduction %>
       </div>
     </div>
+    
+  <div class="tag_search">
+    <%= form_tag admin_team_path(@team), method: :get, class: 'boards__searchForm' do %>
+      <%= select_tag :tag_id,options_from_collection_for_select(Tag.all, :id, :position, params[:tag_id]),
+      {
+        prompt: 'ポジションで絞り込み検索',
+        onchange: 'submit(this.form);'
+      }%>
+    <% end %>
+  </div>
 
     <div class="row">
       <table class ="table table-borderless border-top border-bottom">
@@ -31,10 +41,15 @@
           <% @players.each do |player| %>
           <tr>
             <td class="align-bottom">
-              <%= link_to admin_player_path(player.id) do %>
-                <span class ="text-dark"><%= player.player_name %></span>
-              <% end %>
+              <span class="text-dark">
+                <% player.tags.each do |tag| %>
+                　<%= tag.position %>
+                <% end %>
+              </span>
             </td>
+          </tr>
+          <tr>
+            <td></td>
             <td class="align-bottom w-50"><%= player.player_image.html_safe %></td>
             <td class="align-bottom">
               <%= link_to admin_player_path(player.id) do %>

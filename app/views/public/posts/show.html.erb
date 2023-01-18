@@ -20,13 +20,14 @@
       </div>
     </div>
 
-<%= @post.user.name %></p>
-    <p><%= @post.created_at.strftime('%Y/%m/%d') %></p>
-    <p><%= @post.contents %></p>
+    <p>投稿者 <%= @post.user.name %></p>
+    <p>対戦相手 </p>
+    <p>投稿日 <%= @post.created_at.strftime('%Y/%m/%d') %></p>
+    <p>内容 <%= @post.contents %></p>
     <div class="text-center">
       <%= link_to "この選手のスレッドへ", player_posts_path(@player.id), class: "btn btn-secondary" %>
     </div>
-    
+
   <div>
   <% @post.comments.each do |comment| %>
     <%= comment.user.name %>
@@ -34,10 +35,10 @@
     <%= comment.comment_contents %>
   <% end %>
   </div>
-  
+
   <% if @post.favorited_by?(current_user) %>
     <p>
-      <%= link_to player_post_favorite_path(@player.id, @post.id), method: :delete do %>     
+      <%= link_to player_post_favorite_path(@player.id, @post.id), method: :delete do %>
         ♥<%= @post.favorites.count %> いいね
       <% end %>
     </p>
@@ -48,8 +49,8 @@
       <% end %>
     </p>
   <% end %>
-  
-  
+
+
     <%= form_with model: ([@player, @post, @comment]) do |f| %>
     <%= f.text_area :comment_contents, rows: '7', class: "form-control" %>
     <%= f.submit "送信する" %>

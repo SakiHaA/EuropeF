@@ -23,7 +23,8 @@ class Admin::TeamsController < ApplicationController
 
   def show
     @team = Team.find(params[:id])
-    @players = @team.players
+  
+    @players = params[:tag_id].present? ? Tag.find(params[:tag_id]).players.where(team_id: @team.id) : @team.players
   end
 
   def update

@@ -20,6 +20,18 @@
           <td><%= f.text_field :player_name, class: "form-control" %></td>
         </tr>
         <tr>
+          <td>ポジション</td>
+          <td><%= f.collection_check_boxes :tag_ids, Tag.all, :id, :position do |tag| %>
+           <div>
+            <%= tag.label do %>
+              <%= tag.check_box %>
+              <%= tag.text %>
+            <% end %>
+           </div>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
           <td>選手概要文</td>
           <td><%= f.text_area :player_introduction, rows: 7, class: "form-control" %></td>
         </tr>

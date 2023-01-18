@@ -3,9 +3,10 @@ class CreatePosts < ActiveRecord::Migration[6.1]
     create_table :posts do |t|
 
       t.integer :user_id
+      t.integer :team_id
       t.integer :player_id
       t.integer :stadium, null: false, default: 0
-      t.string :opponent
+      t.date :game_date
       t.text :contents
       t.timestamps
     end

@@ -1,22 +1,20 @@
 <div class="py-4">
   <div class="container">
     <div class ="row">
-      <h2><span class="text-dark"><%= @player.player_name %>のレビュー</span></h2>
+      <h2><span class="text-dark"><%= @player.player_name %>のレビュー追加</span></h2>
     </div>
-
-
 
     <div class="row">
       <%= form_with model: [@player,@post] do |f| %>
       <table class ="table table-borderless">
-
-        <tr>
-          <td>選手名</td>
-          <td><%= f.collection_select :player_id, Player.all,  :id, :player_name  %></td>
-        </tr>
+       <% f.hidden_field :player_id, :value => @player.id %>
         <tr>
           <td>対戦相手</td>
-          <td><%= f.text_field :opponent, class: "form-control" %></td>
+          <td><%= f.collection_select :team_id, Team.all,  :id, :team_name, class:"form-control" %></td>
+        </tr>
+        <tr>
+          <td>対戦日</td>
+          <td><%= f.date_field :game_date, class:"form-control" %></td>
         </tr>
         <tr>
           <td>内容</td>

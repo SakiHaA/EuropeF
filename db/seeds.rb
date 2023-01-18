@@ -9,3 +9,10 @@ Admin.create(
    email: 'emly4723159@gmail.com',
    password: 'leFay35811'
 )
+
+Tag.create([
+    { position:'FW' },
+    { position:'MF' },
+    { position:'DF' },
+    { position:'GK' },
+    ])

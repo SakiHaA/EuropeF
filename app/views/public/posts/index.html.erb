@@ -3,9 +3,20 @@
     <div class="row">
       <h2><span class="text-dark"><%= @player.player_name %>のスレッド</span></h2>
     </div>
+
+    <div>
+      <div class="search-form">
+  <%= form_with url: search_path, method: :get, local: true do |f| %>
+    <%= f.text_field :keyword, value: @keyword %>
+    <%= f.hidden_field :player_id, value: @player.id %>
+    <%= f.submit "検索" %>
+  <% end %>
+</div>
+    </div>
+
     <div class="row">
       <h5 class="col-12 text-right">
-        <%= link_to new_player_post_path do %>
+        <%= link_to new_player_post_path(@player) do %>
           <span class="primary">＋レビューを投稿する</span>
         <% end %>
       </h5>
@@ -13,16 +24,25 @@
 
 
   <% @posts.each do |post| %>
-    <p><%= post.user.name %></p>
-    <p><%= post.created_at.strftime('%Y/%m/%d') %></p>
-    <p><%= post.contents %></p>
-    <p><%= link_to player_post_path(@player.id, post.id) do %>
-                <span class="text-dark border-bottom align-bottom">
-                  コメント
-                </span>
-              <% end %></p>
-    <p><% end %></p>
+  <br>
+  <div class="user-detail">
+    <span><%= post.id %>:</span>
+    <span style="color:green; font-weight:bold;"><%= post.user.name %></span>
+    <span style="color:gray"><%= post.created_at.strftime('%Y/%m/%d %H:%M') %></span>
+    <span style="color:blue">対戦相手:<%= post.team.team_name %></span>
+  </div>
 
+  <div class="contents" style="line-height: 24pxS; padding-left: 15px; margin-top: 10px; margin-bottom: 30px;">
+    <p><span style="font-size: 16px; font-weight: bold;"><%= post.contents %></sapn></p>
+    <p><%= link_to player_post_path(@player.id, post.id) do %>
+      <span class="text-dark border-bottom">
+        >>コメントへ
+      </span>
+       <% end %>
+    </p>
+  </div>
+  <% end %>
+  </br>
 
       <div class="text-center">
         <%= link_to "選手の詳細へ戻る", player_path(@player.id), class: "btn btn-secondary" %>

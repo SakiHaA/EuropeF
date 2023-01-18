@@ -6,19 +6,38 @@
     <div class="row">
       <h5 class="col-12 text-right">
         <%= link_to new_admin_player_path do %>
-          <span class="primary">＋リーグを追加する</span>
+          <span class="primary">＋選手を追加する</span>
         <% end %>
       </h5>
     </div>
 
+  <div class="tag_search">
+    <%= form_tag admin_players_path, method: :get, class: 'boards__searchForm' do %>
+      <%= select_tag :tag_id,options_from_collection_for_select(Tag.all, :id, :position, params[:tag_id]),
+      {
+        prompt: 'ポジションで絞り込み検索',
+        onchange: 'submit(this.form);'
+      }%>
+    <% end %>
+  </div>
+      
     <div class="row">
       <table class="table table-borderless border-top border-bottom">
         <tbody>
           <% @players.each do |player| %>
+
+
           <tr>
             <td class="align-bottom">
-              <span class="text-dark"><%= player.player_name %></span>
+              <span class="text-dark">
+                <% player.tags.each do |tag| %>
+                　<%= tag.position %>
+                <% end %>
+              </span>
             </td>
+          </tr>
+          <tr>
+            <td></td>
             <td class="align-bottom w-50"><%= player.player_image.html_safe %></td>
             <td class="align-bottom">
               <%= link_to admin_player_path(player.id) do %>

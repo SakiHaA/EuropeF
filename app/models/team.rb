@@ -3,6 +3,7 @@ class Team < ApplicationRecord
   validates :team_introduction, presence: true
   belongs_to :league
   has_many :players, dependent: :destroy
+  has_many :posts
   
   
   def self.looks(search, word)
