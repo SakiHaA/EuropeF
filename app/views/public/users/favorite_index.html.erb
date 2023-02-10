@@ -1,0 +1,10 @@
+<% @favorites.each do |favorite| %>
+  <%= favorite.post.contents %>
+  <%= favorite.user.user_name %>
+               
+<% end  %>
+      <div class="text-center">
+        <%= link_to "トップページへ", root_path, class: "btn btn-secondary" %>
+      </div>
+  </div>
+</div>

@@ -1,5 +1,6 @@
 class Admin::PlayersController < ApplicationController
-  before_action :move_to_signed_in
+ before_action :authenticate_admin!
+ 
   def index
     @players = params[:tag_id].present? ? Tag.find(params[:tag_id]).players : Player.all
   end
@@ -28,7 +29,7 @@ class Admin::PlayersController < ApplicationController
   def update
     @player = Player.find(params[:id])
     if @player.update(player_params)
-      redirect_to admin_players_path(@player.id)
+      redirect_to admin_player_path(@player.id)
     else
       redirect_to edit_admin_player_path(@player.id)
     end

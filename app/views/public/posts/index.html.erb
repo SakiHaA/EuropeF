@@ -27,9 +27,11 @@
   <br>
   <div class="user-detail">
     <span><%= post.id %>:</span>
-    <span style="color:green; font-weight:bold;"><%= post.user.name %></span>
+    <span style="color:green; font-weight:bold;"><%= post.user.user_name %></span>
     <span style="color:gray"><%= post.created_at.strftime('%Y/%m/%d %H:%M') %></span>
-    <span style="color:blue">対戦相手:<%= post.team.team_name %></span>
+    <span style="color:gray">対戦相手:<%= post.team.team_name %></span>
+    <span style="color:gray">対戦日:<%= post.game_date %></span>
+    <span style="color:gray">スタジアム:<%= post.stadium %></span>
   </div>
 
   <div class="contents" style="line-height: 24pxS; padding-left: 15px; margin-top: 10px; margin-bottom: 30px;">

@@ -1,49 +1,52 @@
 <div class="py-4">
   <div class="container">
-    <div class ="row">
-      <h2><span class="text-dark">チーム追加</span></h2>
-    </div>
-
-    <div class ="row">
-      <% if @team.errors.any? %>
-      <%= @team.errors.count %>件のエラーが発生しました
-        <ul>
-          <% @team.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      <% end %>
-    </div>
-
+    
     <div class="row">
-      <%= form_with model: @team, url: admin_teams_path, method: :post do |f| %>
-      <table class ="table table-borderless">
-        <tr>
-          <td>リーグ名</td>
-          <td><%= f.collection_select :league_id, League.all,  :id, :league_name  %></td>
-        </tr>
-        <tr>
-          <td>チーム名</td>
-          <td><%= f.text_field :team_name, class: "form-control" %></td>
-        </tr>
-        <tr>
-          <td>チーム概要文</td>
-          <td><%= f.text_area :team_introduction, rows: 7, class: "form-control" %></td>
-        </tr>
-        <tr>
-          <td>チーム画像(gettyなどの埋め込み画像のhtml)</td>
-          <td><%= f.text_field :team_image, class: "form-control" %></td>
-        </tr>
-        <tr>
-          <td>
-            <%= f.submit "追加を完了する", class: "btn btn-primary" %>
-    　         <% end %>
-    　     </td>
-          <td>
-            <%= link_to "チームの一覧画面へ戻る", admin_teams_path, class: "btn btn-secondary" %>
-          </td>
-        </tr>
-      </table>
+      <div class="col-12">
+        <% if @team.errors.any? %>
+          <%= @team.errors.count %>件のエラーが発生しました
+            <ul>
+              <% @team.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+        <% end %>
+      </div>
     </div>
+   
+    <div class="row">
+      <div class="col-12 offset-md-1">
+        <h3>チーム追加</h3>
+      </div>
+    </div>
+    
+    <%= form_with model: @team, url: admin_teams_path, method: :post do |f| %>
+      <div class="row py-4 justify-content-center">
+        <div class="col-3 col-md-2"><%= f.label :league_id, "リーグ名" %></div>
+        <div class="col-6 col-md-4"><%= f.collection_select :league_id, League.all,  :id, :league_name %></div>
+      </div>
+      <div class="row py-3 justify-content-center">
+        <div class="col-3 col-md-2"><%= f.label :team_name, "チーム名" %></div>
+        <div class="col-6 col-md-4"><%= f.text_field :team_name, class: "form-control" %></div>
+      </div>
+      <div class ="row py-4 justify-content-center">
+        <div class="col-3 col-md-2"><%= f.label :team_introduction, "チーム概要文" %></div>
+        <div class="col-6 col-md-4"><%= f.text_area :team_introduction, rows: 7, class: "form-control" %></div>
+      </div>
+      <div class="row py-4 justify-content-center">
+        <div class="col-3 col-md-2"><%= f.label :team_image, "チーム画像(gettyの埋め込み画像のhtml)" %></div>
+        <div class="col-6 col-md-4"><%= f.text_field :team_image, class: "form-control" %></div>
+      </div>
+      <div class="row py-3">
+        <div class="col-12 text-center"><%= f.submit "追加を完了する", class: "btn btn-primary" %></div>
+      </div>
+    <% end %>
+    
+    <div class="row py-3">
+      <div class="col-12 text-center">
+        <%= link_to "チームの一覧画面へ戻る", admin_teams_path, class: "btn btn-secondary" %>
+      </div>
+    </div>
+    
   </div>
 </div>

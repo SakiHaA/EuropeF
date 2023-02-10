@@ -1,41 +1,50 @@
 <div class="py-4">
   <div class="container">
+    
     <div class="row">
-      <h2><span class="text-dark">リーグ一覧</span></h2>
+      <div class="col-5 offset-md-1">
+        <h3>リーグ一覧</h3>
+      </div>
     </div>
-
     <div class="row">
-      <h5 class="col-12 text-right">
+      <h5 class="col-5 col-lg-4 offset-7 text-primary">
         <%= link_to new_admin_league_path do %>
-          <span class="primary">＋リーグを追加する</span>
+          <span>＋リーグを追加する</span>
         <% end %>
       </h5>
     </div>
-
-    <div class="row">
-      <table class="table table-borderless border-top border-bottom">
-        <tbody>
-          <% @leagues.each do |league| %>
-          <tr>
-            <td class="align-bottom">
-              <span class="text-dark"><%= league.league_name %></span>
-            </td>
-            <td class="align-bottom w-50"><%= league.league_image.html_safe %></td>
-            <td class="align-bottom">
-              <%= link_to admin_league_path(league.id) do %>
-                <span class="text-dark border-bottom">
-                  >><%= league.league_name %>の詳細へ
-                </span>
-              <% end %>
-            </td>
-          </tr>
+    
+    <hr>
+    
+    <% @leagues.each do |league| %>
+      <div class="row pt-5 pb-1">
+        <div class="col-12 text-left">
+          <h4><%= league.league_name %></h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-7 offset-2">
+          <%= league.league_image.html_safe %>
+        </div>
+      </div>
+      <div class="row pt-2">
+        <h5 class="col-12 text-right text-primary">
+          <%= link_to admin_league_path(league.id) do %>
+            <span>
+              >><%= league.league_name %>のチーム一覧へ
+            </span>
           <% end %>
-        </tbody>
-      </table>
-    </div>
-
-      <div class="text-center">
+        </h5>
+      </div>
+    <% end %>
+    
+    <hr>
+    
+    <div class="row py-3">
+      <div class="col-12 text-center">
         <%= link_to "トップページへ", admin_root_path, class: "btn btn-secondary" %>
       </div>
+    </div>
+    
   </div>
 </div>

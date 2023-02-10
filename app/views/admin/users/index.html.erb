@@ -1,0 +1,10 @@
+ <% @users.each do |user| %>
+ 
+ <%= user.user_name %>
+ 
+ <%= link_to admin_user_path(user.id) do %>
+                <span class="text-dark border-bottom">
+                  >><%= user.user_name %>のユーザーの詳細へ
+                </span>
+              <% end %>
+    <% end %>

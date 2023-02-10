@@ -1,5 +1,6 @@
 class Admin::TeamsController < ApplicationController
-  before_action :move_to_signed_in
+  before_action :authenticate_admin!
+  
   def index
     @teams = Team.all
   end
@@ -30,7 +31,7 @@ class Admin::TeamsController < ApplicationController
   def update
     @team = Team.find(params[:id])
     if @team.update(team_params)
-      redirect_to admin_teams_path(@team.id)
+      redirect_to admin_team_path(@team.id)
     else
       redirect_to edit_admin_team_path(@team.id)
     end

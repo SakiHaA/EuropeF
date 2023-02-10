@@ -1,5 +1,5 @@
 class Admin::LeaguesController < ApplicationController
-  before_action :move_to_signed_in
+  before_action :authenticate_admin!
   def index
     @leagues = League.all
   end

@@ -1,5 +1,6 @@
 class Player < ApplicationRecord
   validates :player_name, presence: true
+  validates :player_image, presence: true
   validates :player_introduction, presence: true
   has_many :posts, dependent: :destroy
   has_many :player_tags, dependent: :destroy

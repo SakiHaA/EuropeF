@@ -5,10 +5,8 @@ class Public::CommentsController < ApplicationController
     comment1.user_id = current_user.id
     comment1.post_id = post.id
     comment1.save
-    redirect_to root_path
+    redirect_to request.referer
   end
-
-
 
   private
 

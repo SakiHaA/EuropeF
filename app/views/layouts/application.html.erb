@@ -13,11 +13,16 @@
 
   <body>
     <header>
+      <div class="container">
+      <div class="logo">
+        <div style="text-align: center;">
+          <%= link_to root_path do %>
+            <%= image_tag "625F958E-6C41-4924-BF84-BDDA129FC858.png", size: '650x350' %>
+          <% end %>
+        </div>
+      </div>
+    
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-         <div class="container">
-           <a class="navbar-brand text-light" href="/">
-             <span>EuropeF</span>
-           </a>
            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="true" aria-label="Toggle navigation">
              <span class="navbar-toggler-icon"></span>
            </button>

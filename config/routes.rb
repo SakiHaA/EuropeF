@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  #ユーザー用
   devise_for :users,skip: [:passwords],controllers: {
   registrations: "public/registrations",
   sessions: 'public/sessions'
@@ -15,22 +14,32 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: "homes#top"
     get 'about' => 'homes#about'
-    resources :users,  only: [:index, :new, :create, :show, :edit, :update, :destroy]
-    resources :leagues,  only: [:index, :new, :create, :show, :edit, :update, :destroy]
-    resources :teams, only: [:index, :new, :create, :show, :edit, :update, :destroy]
-    resources :players, only: [:index, :new, :create, :show, :edit, :update, :destroy]
+    resources :users,  only: [:index, :show, :new, :create, :edit, :update, :destroy]
+    resources :leagues,  only: [:index, :show,  :new, :create, :edit, :update, :destroy]
+    resources :teams, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+    resources :players, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
+      resources :posts, only: [:index, :show ,:destroy] do
+        resources :comments, only: [:destroy]
+        resources :favorites, only: [:destroy]
+      end
+    end
   end
 
   scope module: :public do
     root to: 'homes#top'
     get 'about' => 'homes#about'
     get 'search' => 'posts#search'
-    resources :users, only: [:index, :show, :edit, :update, :destroy]
+    resources :users, only: [:index, :show, :edit, :update, :destroy] do
+      collection do
+        get 'favorite_index'
+        get 'comment_index'
+      end
+    end
     resources :leagues,  only: [:index, :show]
     resources :teams, only: [:index, :show]
     resources :players, only: [:index, :show] do
-      resources :posts, only: [:index, :new, :create, :destroy, :show] do
-        resources :comments, only: [:create, :destroy]
+      resources :posts, only: [:index, :new, :create, :show] do
+        resources :comments, only: [:create]
         resources :favorites, only: [:create, :destroy]
       end
     end

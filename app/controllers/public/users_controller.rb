@@ -3,6 +3,16 @@ class Public::UsersController < ApplicationController
     @user = current_user
   end
   
+  def favorite_index
+    @user = current_user
+    @favorites = Favorite.where(user_id: @user.id).all
+  end
+  
+  def comment_index
+    @user = current_user
+    @comments = Comment.where(user_id: @user.id).all
+  end
+  
   def edit
     @user = User.find(params[:id])
   end
@@ -19,6 +29,6 @@ class Public::UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :profile_image)
+    params.require(:user).permit(:user_name)
   end
 end
