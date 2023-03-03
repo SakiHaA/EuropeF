@@ -1,32 +1,42 @@
-<div class="py-4">
-  <div class="container">
-      
-    <div class ="offset-lg-1">
+<div class="container">
+  <%= render "public/shared/error_messages", resource: resource %>
+  
+  <div class="row">
+    <div class ="col-11 offset-1">
       <h3>ユーザー登録</h3>
     </div>
-    
-    <%= form_with model: @user, url: user_registration_path do |f| %>
-    <%= render "public/shared/error_messages", resource: resource %>
-      <div class="row py-4 justify-content-center">
-        <div class="col-4 offset-lg-2"><%= f.label :user_name, "ユーザー名" %></div>
-        <div class="col-6 col-md-4 col-lg-5"><%= f.text_field :user_name, class: "form-control" %></div>
-      </div>
-      <div class="row py-3 justify-content-center">
-        <div class="col-4 offset-lg-2"><%= f.label :email, "メールアドレス" %></div>
-        <div class="col-6 col-md-4 col-lg-5"><%= f.email_field :email, class: "form-control" %></div>
-      </div>
-      <div class="row py-3 justify-content-center">
-        <div class="col-4 offset-lg-2"><%= f.label :password, "パスワード(6文字以上)" %></div>
-        <div class="col-6 col-md-4 col-lg-5"><%= f.password_field :password, class: "form-control" %></div>
-      </div>
-      <div class="row py-3 justify-content-center">
-        <div class="col-4 offset-lg-2"><%= f.label :password_confirmation, "パスワード(確認用)" %></div>
-        <div class="col-6 col-md-4 col-lg-5"><%= f.password_field :password_confirmation, class: "form-control" %></div>
-      </div>
-      <div class ="row py-3 text-center">
-        <div class="col-12"><%= f.submit "登録する", class: "btn btn-primary" %></div>
-      </div>
-    <% end %>
-    
   </div>
+ 
+  <%= form_with model: @user, url: user_registration_path do |f| %>
+    <div class="row pt-5 pb-4 justify-content-center">
+      <div class="col-3 col-md-2"><%= f.label :user_name, "ユーザー名" %></div>
+      <div class="col-6 col-md-4"><%= f.text_field :user_name, class: "form-control" %></div>
+    </div>
+    <div class="row py-4 justify-content-center">
+      <div class="col-3 col-md-2"><%= f.label :email, "メールアドレス" %></div>
+      <div class="col-6 col-md-4"><%= f.email_field :email, class: "form-control" %></div>
+    </div>
+    <div class="row py-4 justify-content-center">
+      <div class="col-3 col-md-2"><%= f.label :password, "パスワード(6文字以上)" %></div>
+      <div class="col-6 col-md-4"><%= f.password_field :password, class: "form-control" %></div>
+    </div>
+    <div class="row py-4 justify-content-center">
+      <div class="col-3 col-md-2"><%= f.label :password_confirmation, "パスワード(確認用)" %></div>
+      <div class="col-6 col-md-4"><%= f.password_field :password_confirmation, class: "form-control" %></div>
+    </div>
+    <div class ="row pt-4 pb-5">
+      <div class="col-12 text-center">
+        <%= f.submit "登録する", class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+  
+  <hr>
+  
+  <div class="row py-3">
+    <div class="col-12 text-center">
+      <%= link_to "トップページへ", root_path, class: "btn btn-secondary" %>
+    </div>
+  </div>
+
 </div>

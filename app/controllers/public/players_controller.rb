@@ -1,11 +1,8 @@
 class Public::PlayersController < ApplicationController
   before_action :move_to_signed_in
+  
   def index
-    @players = Player.all
-  end
-
-  def new
-    @player = Player.new
+    @players = params[:tag_id].present? ? Tag.find(params[:tag_id]).players : Player.all
   end
 
   def show
@@ -13,19 +10,9 @@ class Public::PlayersController < ApplicationController
     @post = Post.new
   end
 
-
-  def create
-    @player = Player.new(player_params)
-    if @player.save
-      redirect_to players_path(@player.id)
-    else
-      render :new
-    end
-  end
-
   private
   def player_params
-    params.require(:player).permit(:league_id, :team_id, :player_name, :player_image, :player_introduction,)
+    params.require(:player).permit(:league_id, :team_id, :player_name, :player_image, :player_nationality, :player_age, :player_height, :player_weight, :player_introduction, tag_ids: [])
   end
   
   #ユーザーがサインインしてない場合ログイン画面に行くメソッド

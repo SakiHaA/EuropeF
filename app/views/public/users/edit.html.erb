@@ -1,23 +1,32 @@
 <div class="container">
-  <div class="py-4">
-    <div class="row">
-      <h2><span>ユーザー編集</span></h2>
-    </div>
-    
-    <div class="row">
-      <%= form_with model: @user, method: :patch do |f| %>
-      <table class="table table-borderless">
-        <tr>
-          <td>ユーザー名</td>
-          <td><%= f.text_field :user_name, class: "form-control" %></td>
-        </tr>
-        <tr>
-          <td>
-            <%= f.submit "編集を確定する", class: "btn btn-primary" %>
-            <% end %>
-          </td>
-        </tr>
-      </table>
+  
+  <div class="row">
+    <div class="col-11 offset-1">
+      <h2>ユーザー情報編集</h2>
     </div>
   </div>
+
+  <%= form_with model: @user, method: :patch do |f| %>
+    <div class="row pt-5 pb-4 justify-content-center">
+      <div class="col-3 col-md-2"><%= f.label :user_name, "ユーザー名" %></div>
+      <div class="col-6 col-md-4"><%= f.text_field :user_name, class: "form-control" %></div>
+    </div>
+    <div class="row pt-4 pb-5">
+      <div class="col-2 offset-2 offset-lg-3">
+        <%= f.submit "編集を確定する", class: "btn btn-primary" %>
+      </div>
+      <div class="col-4 offset-2 offset-lg-1">
+        <%= link_to "退会する", user_path, method: :delete, "data-confirm" => "本当に退会しますか？", class:"btn btn-danger" %>
+      </div>
+    </div>
+  <% end %>
+  
+  <hr>
+  
+  <div class="row py-3">
+    <div class="col-12 text-center">
+      <%= link_to "ユーザーページへ戻る", user_path(@user.id), class: "btn btn-secondary" %>
+    </div>
+  </div>
+
 </div>

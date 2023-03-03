@@ -1,5 +1,8 @@
 class Public::PostsController < ApplicationController
+  before_action :check_guest, only: [:new, :create]
+  
   def new
+    @user = current_user
     @player = Player.find(params[:player_id])
     @post = Post.new
   end
@@ -10,8 +13,12 @@ class Public::PostsController < ApplicationController
     @post1.user_id = current_user.id
     @post1.player_id = @player.id
     #binding.pry
-    @post1.save
-    redirect_to player_posts_path(@player.id)
+    if @post1.save
+      redirect_to player_posts_path(@player.id), notice: '投稿を追加しました。'
+    else
+      flash.now[:alert] = '未入力の項目があります。'
+      render :new
+    end
   end
 
   def index
@@ -31,10 +38,23 @@ class Public::PostsController < ApplicationController
     @post = @player.posts.find(params[:id])
     @comment = Comment.new
   end
-
-
+  
+  def destroy
+    @player = Player.find(params[:player_id])
+    @post = @player.posts.find(params[:id])
+    @post.destroy
+    redirect_to player_posts_path(@player.id), notice: '投稿を削除しました。'
+  end
+  
   private
   def post_params
-    params.require(:post).permit(:team_id, :game_date, :stadium, :contents)
+    params.require(:post).permit(:user_id, :team_id, :game_date, :stadium, :contents)
+  end
+  
+  def check_guest
+    if current_user.email == 'guest@example.com'
+      flash[:notice] = "ゲストユーザーは回覧のみ可能です。"
+      redirect_to request.referer
+    end
   end
 end

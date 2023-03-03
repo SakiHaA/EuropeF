@@ -1,33 +1,55 @@
-<div class="py-4">
-  <div class="container">
-    <div class ="row">
-      <div class="col-8">
-        <h2><span class="text-dark"><%= @player.player_name %></span></h2>
-      </div>
+<div class="container">
+  
+  <div class ="row">
+    <div class="col-11 offset-1">
+      <h2><%= @player.player_name %></h2>
     </div>
-
-      <table class ="table table-borderless border-top border-bottom">
-        <tbody>
-          <tr>
-            <td><%= @player.player_image.html_safe %></td>
-          </tr>
-      　</tbody>
-      </table>
-
-    <div class="row">
-      <div class="text-center">
-        <%= @player.player_introduction %>
-      </div>
+  </div>
+  
+  <hr>
+  
+  <div class="row">
+    <div class="col-7 offset-2">
+      <%= @player.player_image.html_safe %>
     </div>
-
-
-    <div class="text-center">
-      <%= link_to "この選手のスレッドへ", player_posts_path(@player.id), class: "btn btn-secondary" %>
+    <div class="col-3">
+      <br>
+      <br>
+      <p>国籍:<%= @player.player_nationality %></p>
+      <p>年齢:<%= @player.player_age %></p>
+      <p>身長:<%= @player.player_height %></p>
+      <p>体重:<%= @player.player_weight %></p>
+      <p>ポジション:<% @player.tags.each do |tag| %>
+                      <%= tag.position %>
+                    <% end %>
+      </p>
+      <p>管理人から一言:<%= @player.player_introduction %></p>
+      <br>
+      <br>
+      <br>
+      <br>
+      <h5 class="text-primary">
+        <%= link_to player_posts_path(@player.id) do %>
+          <span>
+            >>この選手のスレッドへ
+          </span>
+        <% end %>
+      </h5>
     </div>
-
-
-    <div class="text-center">
+  </div>
+  
+  <hr>
+  
+  <div class="row py-3">
+    <div class="col-12 text-center">
       <%= link_to "選手一覧へ戻る", players_path, class: "btn btn-secondary" %>
     </div>
   </div>
+  
+  <div class="row py-3">
+    <div class="col-12 text-center">
+      <%= link_to "トップページへ", root_path, class: "btn btn-secondary" %>
+    </div>
+  </div>
+
 </div>

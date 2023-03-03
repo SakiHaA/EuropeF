@@ -6,7 +6,11 @@ class CreatePlayers < ActiveRecord::Migration[6.1]
       t.integer :team_id
       t.string :player_name
       t.text :player_image
-      t.text :player_introduction
+      t.string :player_nationality
+      t.string :player_age
+      t.string :player_height
+      t.string :player_weight
+      t.string :player_introduction
       t.timestamps
     end
   end

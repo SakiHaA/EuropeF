@@ -1,1 +1,58 @@
-<%= @user.user_name %>
+<div class="container">
+  
+  <div class="row">
+    <div class="col-11 offset-1">
+      <h2><%= @user.user_name %>の詳細</h2>
+    </div>
+  </div>
+  
+  <div class="row pt-4">
+    <div class="col-2 offset-4">ユーザーID:</div>
+    <div class="col-4"><%= @user.id %></div>
+  </div>
+  <div class="row pt-4">
+    <div class="col-2 offset-4">ユーザー名:</div>
+    <div class="col-4"><%= @user.user_name %></div>
+  </div>
+  <div class="row pt-4">
+    <div class="col-2 offset-4">メールアドレス:</div>
+    <div class="col-4"><%= @user.email %></div>
+  </div>
+  <div class="row py-4">
+    <div class="col-2 offset-4">登録状況:</div>
+    <div class="col-4">
+      <% if @user.is_deleted == true %>
+        <span class="text-secondary">退会済み</span>
+      <% else %>
+        <span class="text-success">利用中</span>
+      <% end %>
+    </div>
+  </div>
+  
+  <div class="row pt-5">
+    <div class="col-3 offset-2">
+      <%= link_to "お気に入り一覧へ", admin_user_favorites_path(@user.id), class: "btn btn-warning" %>
+    </div>
+    <div class="col-3">
+      <%= link_to "コメント一覧へ", admin_user_comments_path(@user.id), class: "btn btn-info" %>
+    </div>
+    <div class="col-3">
+      <%= link_to "ユーザー編集へ", edit_admin_user_path(@user.id), class: "btn btn-success" %>
+    </div>
+  </div>
+  
+  <hr>
+  
+  <div class="row py-3">
+    <div class="col-12 text-center">
+      <%= link_to "ユーザー一覧へ", admin_users_path, class: "btn btn-secondary" %>
+    </div>
+  </div>
+  
+  <div class="row py-3">
+    <div class="col-12 text-center">
+      <%= link_to "トップページへ", admin_root_path, class: "btn btn-secondary" %>
+    </div>
+  </div>
+
+</div>

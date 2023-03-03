@@ -1,69 +1,74 @@
-<div class="py-4">
-  <div class="container">
-    
-    <div class ="row">
-      <div class="col-12">
-        <% if @player.errors.any? %>
-          <%= @player.errors.count %>件のエラーが発生しました
-            <ul>
-              <% @player.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-            </ul>
+<div class="container">
+  
+  <div class ="row">
+    <div class="col-11 offset-1">
+      <h2>選手追加</h2>
+    </div>
+  </div>
+  
+  <hr>
+  
+  <%= form_with model: @player, url: admin_players_path, method: :post do |f| %>
+    <div class ="row pt-5 pb-4 justify-content-center">
+      <div class="col-3 col-md-2"><%= f.label :league_id, "リーグ名" %></div>
+      <div class="col-6 col-md-4"><%= f.collection_select :league_id, League.all,  :id, :league_name, class: "form-control" %></div>
+    </div>
+    <div class ="row py-4 justify-content-center">
+      <div class="col-3 col-md-2"><%= f.label :team_id, "チーム名" %></div>
+      <div class="col-6 col-md-4"><%= f.collection_select :team_id, Team.all,  :id, :team_name, class: "form-control" %></div>
+    </div>
+    <div class ="row py-4 justify-content-center">
+      <div class="col-3 col-md-2"><%= f.label :player_name, "選手名" %></div>
+      <div class="col-6 col-md-4"><%= f.text_field :player_name, class: "form-control" %></div>
+    </div>
+    <div class ="row py-4 justify-content-center">
+      <div class="col-3 col-md-2"><%= f.label :player_nationality, "国籍" %></div>
+      <div class="col-6 col-md-4"><%= f.text_field :player_nationality, class: "form-control" %></div>
+    </div>
+    <div class ="row py-4 justify-content-center">
+      <div class="col-3 col-md-2"><%= f.label :player_age, "年齢" %></div>
+      <div class="col-6 col-md-4"><%= f.text_field :player_age, placeholder: "XX才", class: "form-control" %></div>
+    </div>
+    <div class ="row py-4 justify-content-center">
+      <div class="col-3 col-md-2"><%= f.label :player_height, "身長" %></div>
+      <div class="col-6 col-md-4"><%= f.text_field :player_height, placeholder: "XXcm", class: "form-control" %></div>
+    </div>
+    <div class ="row py-4 justify-content-center">
+      <div class="col-3 col-md-2"><%= f.label :player_weight, "体重" %></div>
+      <div class="col-6 col-md-4"><%= f.text_field :player_weight, placeholder: "XXkg", class: "form-control" %></div>
+    </div>
+    <div class ="row py-4 justify-content-center">
+      <div class="col-3 col-md-2"><%= f.label :player_introduction, "管理人から一言" %></div>
+      <div class="col-6 col-md-4"><%= f.text_area :player_introduction, class: "form-control" %></div>
+    </div>
+    <div class ="row py-4 justify-content-center">
+      <div class="col-3 col-md-2"><%= f.label :player_image, "選手画像(gettyの埋め込み画像のhtml)" %></div>
+      <div class="col-6 col-md-4"><%= f.text_field :player_image, class: "form-control" %></div>
+    </div>
+    <div class ="row py-4">
+      <div class="col-4 col-md-3 offset-1 offset-md-3"><%= f.label :tag_ids, "ポジション" %></div>
+      <div class="col-1">
+        <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :position do |tag| %>
+          <%= tag.label do %>
+            <%= tag.check_box %>
+            <%= tag.text %>
+          <% end %>
         <% end %>
       </div>
     </div>
-    
-    <div class ="row">
-      <div class="col-12 offset-md-1">
-        <h3>選手追加</h3>
-      </div>
-    </div>
-    
-    <%= form_with model: @player, url: admin_players_path, method: :post do |f| %>
-      <div class ="row py-4 justify-content-center">
-        <div class="col-3 col-md-2"><%= f.label :league_id, "リーグ名" %></div>
-        <div class="col-6 col-md-4"><%= f.collection_select :league_id, League.all,  :id, :league_name %></div>
-      </div>
-      <div class ="row py-4 justify-content-center">
-        <div class="col-3 col-md-2"><%= f.label :team_id, "チーム名" %></div>
-        <div class="col-6 col-md-4"><%= f.collection_select :team_id, Team.all,  :id, :team_name %></div>
-      </div>
-      <div class ="row py-4 justify-content-center">
-        <div class="col-3 col-md-2"><%= f.label :player_name, "選手名" %></div>
-        <div class="col-6 col-md-4"><%= f.text_field :player_name, class: "form-control" %></div>
-      </div>
-      <div class ="row py-4">
-        <div class="col-4 col-md-3 offset-1 offset-md-3"><%= f.label :tag_ids, "ポジション" %></div>
-        <div class="col-1">
-          <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :position do |tag| %>
-            <%= tag.label do %>
-              <%= tag.check_box %>
-              <%= tag.text %>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
-      <div class ="row py-4 justify-content-center">
-        <div class="col-3 col-md-2"><%= f.label :player_introduction, "選手概要文" %></div>
-        <div class="col-6 col-md-4"><%= f.text_area :player_introduction, rows: 7, class: "form-control" %></div>
-      </div>
-      <div class ="row py-4 justify-content-center">
-        <div class="col-3 col-md-2"><%= f.label :player_image, "選手画像(gettyなどの埋め込み画像のhtml)" %></div>
-        <div class="col-6 col-md-4"><%= f.text_field :player_image, class: "form-control" %></div>
-      </div>
-      <div class ="row py-3">
-        <div class="col-12 text-center">
-          <%= f.submit "追加を完了する", class: "btn btn-primary" %>
-        </div>
-      </div>
-    <% end %>
-    
-    <div class="row py-3">
+    <div class ="row pt-4 pb-5">
       <div class="col-12 text-center">
-        <%= link_to "選手の一覧画面へ戻る", admin_players_path, class: "btn btn-secondary" %>
+        <%= f.submit "追加を完了する", class: "btn btn-primary" %>
       </div>
     </div>
-    
+  <% end %>
+  
+  <hr>
+  
+  <div class="row py-3">
+    <div class="col-12 text-center">
+      <%= link_to "選手の一覧画面へ戻る", admin_players_path, class: "btn btn-secondary" %>
+    </div>
   </div>
+
 </div>

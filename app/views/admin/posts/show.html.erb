@@ -1,0 +1,82 @@
+<div class="container">
+    
+    <div class ="row">
+      <div class="col-11 offset-1">
+        <h2>コメントページ</h2>
+      </div>
+    </div>
+    
+    <hr>
+    
+    <div class="row">
+      <div class ="col-7 offset-2">
+        <%= @player.player_image.html_safe %>
+      </div>
+    </div>
+    
+    <hr>
+    
+    <div class="row">
+      <div class="col-12">
+        <span><%= @post.id %>:</span>
+        <span class="text-success"><%= @post.user.user_name %></span>
+        <span class="text-muted">投稿日時:<%= @post.created_at.strftime('%Y/%m/%d %H:%M') %></span>
+        <span class="text-muted">対戦相手:<%= @post.team.team_name %></span>
+        <span class="text-muted">対戦日:<%= @post.game_date %></span>
+        <span class="text-muted">スタジアム:<%= @post.stadium_i18n %></span>
+        <span>♥<%= @post.favorites.count %> いいね</span>
+      </div>
+    </div>
+    
+    <div class="row pt-4">
+      <div class="col-8 offset-1">
+        レビュー内容: <span class="font-weight-bold"><%= @post.contents %></span>
+      </div>
+      <div class="col-3">
+        <%= link_to "削除", admin_player_post_path(@player.id, @post.id), method: :delete, "data-confirm" => "本当にこの投稿を削除しますか？" %>
+      </div>
+    </div>
+    
+    <hr> 
+    
+    <div class="row">
+      <h5 class="col-8">
+        コメント一覧
+      </h5>
+    </div>
+    
+    <hr>
+    
+    <% @post.comments.each do |comment| %>
+      <div class="row py-4">
+        <div class="col-10 offset-1">
+          <span class="text-success"><%= comment.user.user_name %></span>
+          <span class="text-muted"><%= comment.created_at.strftime('%Y/%m/%d') %></span>
+        </div>
+      </div>
+      <div class="row pt-2 pb-4">
+        <div class="col-8 offset-2">
+          コメント内容:
+            <span class="font-weight-bold"><%= comment.comment_contents %></span>
+            <span>
+              <%= link_to "削除", admin_player_post_comment_path(@player,@post,comment), method: :delete, "data-confirm" => "本当にこのコメントを削除しますか？" %>
+            </span>
+        </div>
+      </div>
+    <% end %>
+    
+    <hr>
+    
+    <div class="row py-3">
+      <div class="col-12 text-center">
+        <%= link_to "この選手のスレッド一覧へ戻る", admin_player_posts_path(@player.id), class: "btn btn-secondary" %>
+      </div>
+    </div>
+    <div class="row py-3">
+      <div class="col-12 text-center">
+        <%= link_to "選手一覧へ戻る", admin_players_path, class: "btn btn-secondary" %>
+      </div>
+    </div>
+    
+  </div>
+</div>

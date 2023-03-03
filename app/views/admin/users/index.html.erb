@@ -1,10 +1,48 @@
- <% @users.each do |user| %>
- 
- <%= user.user_name %>
- 
- <%= link_to admin_user_path(user.id) do %>
-                <span class="text-dark border-bottom">
-                  >><%= user.user_name %>のユーザーの詳細へ
+<div class="container">
+  
+  <div class="row">
+    <div class="col-11 offset-1">
+      <h2>会員一覧</h2>
+    </div>
+  </div>
+  
+  <div class="row py-4">
+    <div class="col-12 teble-responsive">
+      <table class="table text-nowrap">
+        <thead>
+          <tr>
+            <th>ユーザーID</th>
+            <th>ユーザー名</th>
+            <th>メールアドレス</th>
+            <th>登録状況</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= user.id %></td>
+              <td>
+                <span class="text-info">
+                  <%= link_to user.user_name,admin_user_path(user.id), class: "text-info" %>
                 </span>
-              <% end %>
-    <% end %>
+              </td>
+              <td><%= user.email %></td>
+                <% if user.is_deleted == true %>
+              <td class="text-secondary">退会済み</td>
+                <% else %>
+              <td class="text-success">利用中</td>
+                <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  <div class="row py-3">
+    <div class="col-12 text-center">
+      <%= link_to "トップページへ", admin_root_path, class: "btn btn-secondary" %>
+    </div>
+  </div>
+
+</div>

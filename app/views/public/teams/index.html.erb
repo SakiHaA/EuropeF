@@ -1,33 +1,41 @@
-<div class="py-4">
-  <div class="container">
-    <div class="row">
-      <h2><span class="text-dark">チーム一覧</span></h2>
+<div class="container">
+  
+  <div class="row">
+    <div class="col-11 offset-1">
+      <h2>チーム一覧</h2>
     </div>
-    
-    <div class="row">
-      <table class="table table-borderless border-top border-bottom">
-        <tbody>
-          <% @teams.each do |team| %>
-          <tr>
-            <td class="align-bottom">
-              <span class="text-dark"><%= team.team_name %></span>
-            </td>
-            <td class="align-bottom w-50"><%= team.team_image.html_safe %></td>
-            <td class="align-bottom">
-              <%= link_to team_path(team.id) do %>
-                <span class="text-dark border-bottom">
-                  >><%= team.team_name %>の詳細へ
-                </span>
-              <% end %>
-            </td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-
-      <div class="text-center">
-        <%= link_to "トップページへ", root_path, class: "btn btn-secondary" %>
-      </div>
   </div>
+  
+  <hr>
+  
+  <% @teams.each do |team| %>
+    <div class="row pt-5 pb-1">
+      <div class="col-12 text-left">
+        <h4><%= team.team_name %></h4>
+      </div>
+    </div>
+    <div class="row pt-1">
+      <div class="col-7 offset-2">
+        <%= team.team_image.html_safe %>
+      </div>
+    </div>
+    <div class="row pt-2">
+      <h5 class="col-12 text-right text-primary">
+        <%= link_to team_path(team.id) do %>
+          <span>
+            >><%= team.team_name %>の選手一覧へ
+          </span>
+        <% end %>
+      </h5>
+    </div>
+  <% end %>
+  
+  <hr>
+  
+  <div class="row py-3">
+    <div class="col-12 text-center">
+      <%= link_to "トップページへ", root_path, class: "btn btn-secondary" %>
+    </div>
+  </div>
+
 </div>

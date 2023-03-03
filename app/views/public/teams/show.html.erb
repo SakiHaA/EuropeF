@@ -1,49 +1,80 @@
-<div class="py-4">
-  <div class="container">
-    <div class ="row">
-      <div class="col-8">
-        <h2><span class="text-dark"><%= @team.team_name %></span></h2>
-      </div>
+<div class="container">
+  
+  <div class ="row">
+    <div class="col-11 offset-1">
+      <h2><%= @team.team_name %></h2>
     </div>
-
-      <table class ="table table-borderless border-top border-bottom">
-        <tbody>
-          <tr>
-            <td><%= @team.team_image.html_safe %></td>
-          </tr>
-      　</tbody>
-      </table>
-      
-    <div class="row">
-      <div class="text-center">
-        <%= @team.team_introduction %>
-      </div>
-    </div>
-
-    <div class="row">
-      <table class ="table table-borderless border-top border-bottom">
-        <tbody>
-          <% @players.each do |player| %>
-          <tr>
-            <td class="align-bottom">
-              <span class ="text-dark"><%= player.player_name %></spna>
-            </td>
-            <td class="align-bottom w-50"><%= player.player_image.html_safe %></td>
-            <td class="align-bottom">
-              <%= link_to player_path(player.id) do %>
-                <span class="text-dark border-bottom">
-                  >><%= player.player_name %>の詳細へ
-                </span>
-              <% end %>
-            </td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-    
-      <div class="text-center">
-    　   <%= link_to "チーム一覧へ戻る", teams_path, class: "btn btn-secondary" %>
-      </div>
   </div>
+  
+  <hr>
+  
+  <div class="row">
+    <div class="row col-7 offset-2">
+      <%= @team.team_image.html_safe %>
+    </div>
+  </div>
+  
+  <hr>
+  
+  <div class="row pt-1">
+    <div class="col-11 offset-1">
+      <h2><%= @team.team_name %>の選手一覧</h2>
+    </div>
+  </div>
+  
+  <div class="row pt-2">
+    <div class="col-12 text-right">
+      <%= form_tag team_path(@team), method: :get, class: "boards__searchForm" do %>
+        <%= select_tag :tag_id, options_from_collection_for_select(Tag.all, :id, :position, params[:tag_id]),
+          {
+            prompt: "ポジションで絞り込み検索",
+            onchange: "submit(this.form);"
+          } %>
+      <% end %>
+    </div>
+  </div>
+  
+  <% @players.each do |player| %>
+    <div class="row pt-5 pb-1">
+      <div class="col-8 text-left">
+        <h4><%= player.player_name %></h4>
+      </div>
+      <div class="col-4 text-right">
+        <h4>
+          <% player.tags.each do |tag| %>
+            <%= tag.position %>
+          <% end %>
+        </h4>
+      </div>
+    </div>
+    <div class="row pt-2">
+      <div class="col-7 offset-2">
+        <%= player.player_image.html_safe %>
+      </div>
+    </div>
+    <div class="row pt-2">
+      <h5 class="col-12 text-right text-primary">
+        <%= link_to player_path(player.id) do %>
+          <span>
+            >><%= player.player_name %>の詳細へ
+          </span>
+        <% end %>
+      </h5>
+    </div>
+  <% end %>
+  
+  </hr>
+  
+  <div class="row py-3">
+    <div class="col-12 text-center">
+      <%= link_to "チーム一覧へ戻る", teams_path, class: "btn btn-secondary" %>
+    </div>
+  </div>
+  
+  <div class="row py-3">
+    <div class="col-12 text-center">
+      <%= link_to "トップページへ", root_path, class: "btn btn-secondary" %>
+    </div>
+  </div>
+
 </div>

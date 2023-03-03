@@ -1,84 +1,87 @@
-<div class="py-4">
-  <div class="container">
-    
-    <div class="row">
-      <div class="col-5 offset-md-1">
-        <h3><%= @team.team_name %></h3>
-      </div>
+<div class="container">
+  
+  <div class="row">
+    <div class="col-11 offset-1">
+      <h2><%= @team.team_name %></h2>
     </div>
-    <div class="row">
-      <div class="col-8 col-md-6 offset-4 offset-md-5 offset-lg-6">
-        <%= link_to "チーム情報の編集", edit_admin_team_path(@team.id), class: "btn btn-success" %>
-        <%= link_to "チームを削除する", admin_team_path(@team.id), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に削除しますか？削除した場合、このリーグに属するチームもすべて削除されます。" %>
-      </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-8 col-md-6 offset-4 offset-md-5 offset-lg-6">
+      <%= link_to "チーム情報の編集", edit_admin_team_path(@team.id), class: "btn btn-success" %>
+      <%= link_to "チームを削除する", admin_team_path(@team.id), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に削除しますか？削除した場合、このチームに属する選手もすべて削除されます。" %>
     </div>
-    
-    <hr>
-    
-    <div class="row">
-      <div class="col-7 offset-2">
-        <%= @team.team_image.html_safe %>
-      </div>
+  </div>
+  
+  <hr>
+  
+  <div class="row">
+    <div class="col-7 offset-2">
+      <%= @team.team_image.html_safe %>
     </div>
-    
-    <hr>
-    
-    <div class="row">
-      <div class="col-12 offset-md-1">
-        <h3><%= @team.team_name %>の選手一覧</h3>
-      </div>
+  </div>
+  
+  <hr>
+  
+  <div class="row pt-1">
+    <div class="col-11 offset-1">
+      <h2><%= @team.team_name %>の選手一覧</h2>
     </div>
-    
-    <div class="row pt-2">
-      <div class="col-12 text-left">
-        <%= form_tag admin_team_path(@team), method: :get, class: "boards__searchForm" do %>
-          <%= select_tag :tag_id, options_from_collection_for_select(Tag.all, :id, :position, params[:tag_id]),
+  </div>
+  
+  <div class="row pt-2">
+    <div class="col-12 text-right">
+      <%= form_tag admin_team_path(@team), method: :get, class: "boards__searchForm" do %>
+        <%= select_tag :tag_id, options_from_collection_for_select(Tag.all, :id, :position, params[:tag_id]),
           {
             prompt: "ポジションで絞り込み検索",
             onchange: "submit(this.form);"
           } %>
-        <% end %>
-      </div>
+      <% end %>
     </div>
-    <% @players.each do |player| %>
-      <div class="row pt-5 pb-1">
-        <div class="col-12 text-left">
-          <h4>
-            <% player.tags.each do |tag| %>
-              <%= tag.position %>
-            <% end %>
-          </h4>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-7 offset-2">
-          <%= player.player_image.html_safe %>
-        </div>
-      </div> 
-      <div class="row pt-2">
-        <h5 class="col-12 text-right text-primary">
-          <%= link_to admin_player_path(player.id) do %>
-            <span>
-              >><%= player.player_name %>の選手情報へ
-            </span>
-          <% end %>
-        </h5>
-      </div>
-    <% end %>
-    
-    <hr>
-    
-    <div class="row py-3">
-      <div class="col-12 text-center">
-        <%= link_to "チーム一覧へ戻る", admin_teams_path, class: "btn btn-secondary" %>
-      </div>
-    </div>
-    
-    <div class="row py-3">
-      <div class="col-12 text-center">
-        <%= link_to "トップページへ", admin_root_path, class: "btn btn-secondary" %>
-      </div>
-    </div>
-    
   </div>
+  
+  <% @players.each do |player| %>
+    <div class="row pt-5 pb-1">
+      <div class="col-8 text-left">
+        <h4><%= player.player_name %></h4>
+      </div>
+      <div class="col-4 text-right">
+        <h4>
+          <% player.tags.each do |tag| %>
+            <%= tag.position %>
+          <% end %>
+        </h4>
+      </div>
+    </div>
+    <div class="row pt-1">
+      <div class="col-7 offset-2">
+        <%= player.player_image.html_safe %>
+      </div>
+    </div> 
+    <div class="row pt-2">
+      <h5 class="col-12 text-right text-primary">
+        <%= link_to admin_player_path(player.id) do %>
+          <span>
+            >><%= player.player_name %>の選手情報へ
+          </span>
+        <% end %>
+      </h5>
+    </div>
+  <% end %>
+  
+  <hr>
+
+  <div class="row py-3">
+    <div class="col-12 text-center">
+      <%= link_to "チーム一覧へ戻る", admin_teams_path, class: "btn btn-secondary" %>
+    </div>
+  </div>
+    
+  <div class="row py-3">
+    <div class="col-12 text-center">
+      <%= link_to "トップページへ", admin_root_path, class: "btn btn-secondary" %>
+    </div>
+  </div>
+  
 </div>

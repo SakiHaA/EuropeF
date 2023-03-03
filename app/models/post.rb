@@ -1,8 +1,7 @@
 class Post < ApplicationRecord
-  validates :stadium, presence: true
+  validates :game_date, presence: true
   validates :contents, presence: true
-
-  enum stadium: {home: 0, away: 1}
+  enum stadium: { home: 0, away: 1 }
 
   belongs_to :user
   belongs_to :team
@@ -15,6 +14,7 @@ class Post < ApplicationRecord
   end
 
   def self.search(keyword)
-    where(["opponent like?", "%#{keyword}%"])
+    where(["contents like?", "%#{keyword}%"])
   end
+  
 end

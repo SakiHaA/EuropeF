@@ -1,60 +1,68 @@
-<div class="py-4">
-  <div class="container">
-    
-    <div class="row">
-      <div class="col-5 offset-md-1">
-        <h3>選手一覧</h3>
-      </div>
+<div class="container">
+  
+  <div class="row">
+    <div class="col-11 offset-1">
+      <h2>選手一覧</h2>
     </div>
-    <div class="row">
-      <h5 class="col-5 col-lg-4 offset-7 text-primary">
-        <%= link_to new_admin_player_path do %>
-          <span>＋選手を追加する</span>
-        <% end %>
-      </h5>
-    </div>
-    
-    
-    <hr>
-    
-    <div class="row pt-2">
-      <div class="col-12 text-left">
-        <%= form_tag admin_players_path, method: :get, class: "boards__searchForm" do %>
-          <%= select_tag :tag_id, options_from_collection_for_select(Tag.all, :id, :position, params[:tag_id]),
+  </div>
+  
+  <div class="row">
+    <h5 class="col-5 col-lg-4 offset-7 text-primary">
+      <%= link_to new_admin_player_path do %>
+        <span>＋選手を追加する</span>
+      <% end %>
+    </h5>
+  </div>
+  
+  <hr>
+  
+  <div class="row pt-2">
+    <div class="col-12 text-right">
+      <%= form_tag admin_players_path, method: :get, class: "boards__searchForm" do %>
+        <%= select_tag :tag_id, options_from_collection_for_select(Tag.all, :id, :position, params[:tag_id]),
           {
             prompt: "ポジションで絞り込み検索",
             onchange: "submit(this.form);"
           } %>
-        <% end %>
-      </div>
+      <% end %>
     </div>
+  </div>
     
-    <% @players.each do |player| %>
-      <div class="row pt-5 pb-1">
-        <div class="col-12 text-left">
-          <h4><%= player.player_name %></h4>
-        </div>
+  <% @players.each do |player| %>
+    <div class="row pt-5 pb-1">
+      <div class="col-8 text-left">
+        <h4><%= player.player_name %></h4>
       </div>
-      <div class="row">
-        <div class="col-7 offset-2">
-          <%= player.player_image.html_safe %>
-        </div>
-      </div>
-      <div class="row pt-2">
-        <h5 class="col-12 text-right text-primary">
-          <%= link_to admin_player_path(player.id) do %>
-            <span>
-              >><%= player.player_name %>の選手一覧へ
-            </span>
+      <div class="col-4 text-right">
+        <h4>
+          <% player.tags.each do |tag| %>
+            <%= tag.position %>
           <% end %>
-        </h5>
-      </div>
-    <% end %>
-    
-    <hr>
-    
-    <div class="row py-3">
-      <div class="col-12 text-center">
-        <%= link_to "トップページへ", admin_root_path, class: "btn btn-secondary" %>
+        </h4>
       </div>
     </div>
+    <div class="row pt-2">
+      <div class="col-7 offset-2">
+        <%= player.player_image.html_safe %>
+      </div>
+    </div>
+    <div class="row pt-2">
+      <h5 class="col-12 text-right text-primary">
+        <%= link_to admin_player_path(player.id) do %>
+          <span>
+            >><%= player.player_name %>の選手情報へ
+          </span>
+        <% end %>
+      </h5>
+    </div>
+  <% end %>
+  
+  <hr>
+  
+  <div class="row py-3">
+    <div class="col-12 text-center">
+      <%= link_to "トップページへ", admin_root_path, class: "btn btn-secondary" %>
+    </div>
+  </div>
+
+</div>

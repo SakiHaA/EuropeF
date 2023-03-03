@@ -1,31 +1,18 @@
 class Public::TeamsController < ApplicationController
-  before_action :move_to_signed_in, except: [:index,:show]
+  before_action :move_to_signed_in
+  
   def index
     @teams = Team.all
   end
 
-  def new
-    @team = Team.new
-  end
-
-  def create
-    @team = Team.new(team_params)
-    if @team.save
-      redirect_to teams_path(@team.id)
-    else
-      render :new
-    end
-  end
-
   def show
-    @team = Team.find(params[:id])
-    @players = @team.players
+    @team = Team.find(params[:id]
+    @players = params[:tag_id].present? ? Tag.find(params[:tag_id]).players.where(team_id: @team.id) : @team.players
   end
-
 
   private
   def team_params
-    params.require(:team).permit(:league_id, :team_name, :team_image, :team_introduction)
+    params.require(:team).permit(:league_id, :team_name, :team_image, tag_ids:[])
   end
 
   #ユーザーがサインインしてない場合ログイン画面に行くメソッド

@@ -1,38 +1,36 @@
-<div class="py-4">
-  <div class="container">
-    
-    <div class="row">
-      <div class="col-12 offset-md-1">
-        <h3>リーグ編集</h3>
-      </div>
+<div class="container">
+  
+  <div class="row">
+    <div class="col-11 offset-1">
+      <h2>リーグ編集</h2>
     </div>
-    
-    <%= form_with model: @league, url: admin_league_path(@league.id), method: :patch do |f| %>
-      <div class ="row py-4 justify-content-center">
-        <div class="col-3 col-md-2"><%= f.label :league_name, "リーグ名" %></div>
-        <div class="col-6 col-md-4"><%= f.text_field :league_name, class: "form-control" %></div>
-      </div>
-      <div class ="row py-3 justify-content-center">
-        <div class="col-3 col-md-2"><%= f.label :league_introduction, "リーグ概要文" %></div>
-        <div class="col-6 col-md-4"><%= f.text_area :league_introduction, rows: 7, class: "form-control" %></div>
-      </div>
-      <div class ="row py-4 justify-content-center">
-        <div class="col-3 col-md-2"><%= f.label :league_image, "リーグ画像(gettyの埋め込み画像のhtml)" %></div>
-        <div class="col-6 col-md-4"><%= f.text_field :league_image, class: "form-control" %></div>
-      </div>
-      <div class="row py-3">
-        <div class="col-12 text-center">
-          <%= f.submit "編集を完了する", class: "btn btn-primary" %>
-        </div>
-      </div>
-    <% end %>
-    
-    <div class="row py-3">
-      <div class="col-12 text-center">
-        <%= link_to "リーグの詳細画面へ戻る", admin_league_path(@league.id), class: "btn btn-secondary" %>
-      </div>
-    </div>
-    
   </div>
+  
+  <hr>
+ 
+  <%= form_with model: @league, url: admin_league_path(@league.id), method: :patch do |f| %>
+    <div class ="row pt-5 pb-4 justify-content-center">
+      <div class="col-3 col-md-2"><%= f.label :league_name, "リーグ名" %></div>
+      <div class="col-6 col-md-4"><%= f.text_field :league_name, class: "form-control" %></div>
+    </div>
+    <div class ="row py-4 justify-content-center">
+      <div class="col-3 col-md-2"><%= f.label :league_image, "リーグ画像(gettyの埋め込み画像のhtml)" %></div>
+      <div class="col-6 col-md-4"><%= f.text_field :league_image, class: "form-control" %></div>
+    </div>
+    <div class="row pt-4 pb-5">
+      <div class="col-12 text-center">
+        <%= f.submit "編集を完了する", class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+
+  <hr>
+  
+  <div class="row py-3">
+    <div class="col-12 text-center">
+      <%= link_to "リーグの詳細画面へ戻る", admin_league_path(@league.id), class: "btn btn-secondary" %>
+    </div>
+  </div>
+
 </div>
 

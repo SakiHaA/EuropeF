@@ -1,44 +1,44 @@
-<div class="py-4">
-  <div class="container">
-    <div class ="row">
-      <h2><span class="text-dark"><%= @player.player_name %>のレビュー追加</span></h2>
-    </div>
-
-    <div class="row">
-      <%= form_with model: [@player,@post] do |f| %>
-      <table class ="table table-borderless">
-       <% f.hidden_field :player_id, :value => @player.id %>
-        <tr>
-          <td>対戦相手</td>
-          <td><%= f.collection_select :team_id, Team.all,  :id, :team_name, class:"form-control" %></td>
-        </tr>
-        <tr>
-          <td>対戦日</td>
-          <td><%= f.date_field :game_date, class:"form-control" %></td>
-        </tr>
-        <tr>
-          <td>内容</td>
-          <td><%= f.text_area :contents, rows: 7, class: "form-control" %></td>
-        </tr>
-        <tr>
-          <td>スタジアム</td>
-          <td>
-              <%= f.label :home %>
-            　<%= f.radio_button :stadium, :home %>
-            　<%= f.label :away %>
-            　<%= f.radio_button :stadium, :away %>
-    　     </td>
-        </tr>
-        <tr>
-          <td>
-          <%= f.submit "追加を完了する", class: "btn btn-primary" %>
-    　         <% end %>
-    　     </td>
-          <td>
-            <%= link_to "選手の一覧画面へ戻る", players_path, class: "btn btn-secondary" %>
-          </td>
-        </tr>
-      </table>
+<div class="container">
+ 
+  <div class ="row">
+    <div class="col-11 offset-1">
+      <h2><%= @player.player_name %>のレビュー追加</h2>
     </div>
   </div>
+  
+  <hr>
+  
+  <%= form_with model: [@player,@post] do |f| %>
+  <% f.hidden_field :player_id, :value => @player.id %>
+    <div class ="row pt-5 pb-4 justify-content-center">
+      <div class="col-3 col-md-2"><%= f.label :team_id, "対戦相手" %></div>
+      <div class="col-6 col-md-3"><%= f.collection_select :team_id, Team.all,  :id, :team_name, class:"form-control" %></div>
+    </div>
+    <div class ="row py-4 justify-content-center">
+      <div class="col-3 col-md-2"><%= f.label :game_date, "対戦日" %></div>
+      <div class="col-6 col-md-3"><%= f.date_field :game_date, class:"form-control" %></div>
+    </div>
+    <div class ="row py-4 justify-content-center">
+      <div class="col-3 col-md-2"><%= f.label :contents, "レビュー内容" %></div>
+      <div class="col-6 col-md-3"><%= f.text_area :contents, rows: 7, class: "form-control" %></div>
+    </div>
+    <div class ="row py-4 justify-content-center">
+      <div class="col-3 col-md-2"><%= f.label :stadium, "スタジアム" %></div>
+      <div class="col-6 col-md-3"><%= f.select :stadium, Post.stadia_i18n.invert, {}, class: 'form-control' %></div>
+    </div>
+    <div class="row pt-4 pb-5">
+      <div class="col-12 text-center">
+        <%= f.submit "追加を完了する", class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+  
+  <hr>
+  
+  <div class="row py-3">
+    <div class="col-12 text-center">
+      <%= link_to "選手の一覧画面へ戻る", players_path, class: "btn btn-secondary" %>
+    </div>
+  </div>
+  
 </div>
