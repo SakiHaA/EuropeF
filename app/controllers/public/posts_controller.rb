@@ -16,6 +16,9 @@ class Public::PostsController < ApplicationController
     if @post1.save
       redirect_to player_posts_path(@player.id), notice: '投稿を追加しました。'
     else
+      @user = current_user
+      @player = Player.find(params[:player_id])
+      @post = Post.new
       flash.now[:alert] = '未入力の項目があります。'
       render :new
     end
@@ -47,14 +50,14 @@ class Public::PostsController < ApplicationController
   end
   
   private
+  
   def post_params
     params.require(:post).permit(:user_id, :team_id, :game_date, :stadium, :contents)
   end
   
   def check_guest
     if current_user.email == 'guest@example.com'
-      flash[:notice] = "ゲストユーザーは回覧のみ可能です。"
-      redirect_to request.referer
+      redirect_to request.referer, notice: "ゲストユーザーは回覧のみ可能です。"
     end
   end
 end

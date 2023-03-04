@@ -11,11 +11,12 @@ class Public::CommentsController < ApplicationController
     comment1 = Comment.new(comment_params)
     comment1.user_id = current_user.id
     comment1.post_id = post.id
+    # binding.pry
     if comment1.save
       redirect_to request.referer, notice: 'コメントを追加しました。'
     else
-      flash.now[:alert] = "未記入でのコメントはできません。"
-      render 'posts/show', id: params[:id]
+      # render :show
+      redirect_to player_post_path(params[:player_id].to_i, post.id), notice: "未記入でのコメントはできません。"
     end
   end
   
@@ -26,14 +27,14 @@ class Public::CommentsController < ApplicationController
   end
   
   private
+  
   def comment_params
     params.require(:comment).permit(:user_id, :post_id, :comment_contents)
   end
   
   def check_guest
     if current_user.email == 'guest@example.com'
-      flash[:notice] = "ゲストユーザーは回覧のみ可能です。"
-      redirect_to request.referer 
+      redirect_to request.referer, notice: "ゲストユーザーは回覧のみ可能です。"
     end
   end
 end

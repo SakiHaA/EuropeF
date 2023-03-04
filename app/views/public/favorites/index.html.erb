@@ -23,7 +23,7 @@
               <td><%= favorite.post.id %></td>
               <td><%= favorite.post.contents %></td>
               <td><%= favorite.created_at.strftime('%Y/%m/%d %H:%M') %></td>
-              <td><%= link_to "リンクへ", player_post_path(favorite.post.id, favorite.post.player.id) %></td>
+              <td><%= link_to "リンクへ", player_post_path(favorite.post.player.id, favorite.post.id) %></td>
             </tr>
           <% end %>
         </tbody>

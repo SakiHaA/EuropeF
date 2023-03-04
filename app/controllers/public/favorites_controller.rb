@@ -22,10 +22,11 @@ class Public::FavoritesController < ApplicationController
     redirect_to request.referer, notice: "いいねを削除しました。"
   end
   
+  private
+  
   def check_guest
     if current_user.email == 'guest@example.com'
-      flash[:notice] = "ゲストユーザーは回覧のみ可能です。"
-      redirect_to request.referer
+      redirect_to request.referer, notice: "ゲストユーザーは回覧のみ可能です。"
     end
   end
 end
