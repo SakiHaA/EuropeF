@@ -6,7 +6,7 @@ class Public::TeamsController < ApplicationController
   end
 
   def show
-    @team = Team.find(params[:id]
+    @team = Team.find(params[:id])
     @players = params[:tag_id].present? ? Tag.find(params[:tag_id]).players.where(team_id: @team.id) : @team.players
   end
 

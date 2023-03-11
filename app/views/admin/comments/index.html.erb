@@ -25,7 +25,7 @@
               <td><%= comment.post.contents %></td>
               <td><%= comment.created_at.strftime('%Y/%m/%d %H:%M') %></td>
               <td><%= comment.comment_contents %></td>
-              <td><%= link_to "リンクへ", admin_player_post_path(comment.post.id, comment.post.player.id) %></td>
+              <td><%= link_to "リンクへ", admin_player_post_path(comment.post.player.id, comment.post.id) %></td>
             </tr>
           <% end %>
         </tbody>

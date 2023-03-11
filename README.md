@@ -22,10 +22,10 @@
 - 所属チームや、移籍先を調べたいとき
 
 ## 設計書
-- ER図
-- テーブル定義書
-- アプリケーション詳細設計
-- 実装機能リスト=> https://docs.google.com/spreadsheets/d/1bG2WLZo7EtmNb7ibWK5TznLHB_AJ3ToQf_IjMs4VVl4/edit?usp=sharing
+- ER図 =>
+- テーブル定義書 =>
+- アプリケーション詳細設計 
+- 実装機能リスト => https://docs.google.com/spreadsheets/d/1bG2WLZo7EtmNb7ibWK5TznLHB_AJ3ToQf_IjMs4VVl4/edit?usp=sharing
 
 ## 開発環境
 - OS：Linux(CentOS)
