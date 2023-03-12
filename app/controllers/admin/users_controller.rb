@@ -16,17 +16,11 @@ class Admin::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if  @user.update(user_params)
-      redirect_to admin_user_path(@user.id)
+      redirect_to admin_user_path(@user.id), notice: 'ユーザー情報を編集しました。'
     else
-      flash[:notice] = "更新が完了しました。"
+      flash[:notice] = "未入力の項目がある、もしくはすでに使用されているメールアドレスです。"
       render :edit
     end
-  end
-
-  def destroy
-    @user = User.find(params[:id])
-    @user.update(is_deleted: true)
-    redirect_to admin_user_path, notice: '退会しました'
   end
 
   private

@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     root to: "homes#top"
     get 'about' => 'homes#about'
     get 'search' => 'posts#search'
-    resources :users,  only: [:index, :show, :edit, :update, :destroy] do
+    resources :users,  only: [:index, :show, :edit, :update] do
       resources :comments, only: [:index]
       resources :favorites, only: [:index]
     end
@@ -33,7 +33,7 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     get 'about' => 'homes#about'
     get 'search' => 'posts#search'
-    resources :users, only: [:index, :show, :edit, :update, :destroy] do
+    resources :users, only: [:show, :edit, :update, :destroy] do
       resources :comments, only: [:index]
       resources :favorites, only: [:index]
     end

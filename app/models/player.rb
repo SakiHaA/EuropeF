@@ -14,6 +14,8 @@ class Player < ApplicationRecord
   
   belongs_to :team
   belongs_to :league
+  
+  validates :player_tags, presence: true
 
   def self.looks(search, word)
     if search == "perfect_match"

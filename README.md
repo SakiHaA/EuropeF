@@ -24,7 +24,7 @@
 ## 設計書
 - ER図 =>
 - テーブル定義書 =>
-- アプリケーション詳細設計 
+- アプリケーション詳細設計 => https://docs.google.com/spreadsheets/d/1zIBff8lHAUSa6Xcy6NLQ8W0DJ_NaemYL-1r-whM0iws/edit?usp=sharing
 - 実装機能リスト => https://docs.google.com/spreadsheets/d/1bG2WLZo7EtmNb7ibWK5TznLHB_AJ3ToQf_IjMs4VVl4/edit?usp=sharing
 
 ## 開発環境

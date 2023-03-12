@@ -1,19 +1,11 @@
 <% if resource.errors.any? %>
-  <div id="error_explanation">
+  <% resource.errors.full_messages.each do |message| %>
     <div class="row">
       <div class="col-12 text-center text-info">
-        <%= I18n.t("errors.messages.not_saved", count: resource.errors.count, resource: resource.class.model_name.human.downcase) %>
-      </div>
-    </div>
-    
-    <% resource.errors.full_messages.each do |message| %>
-      <div class="row">
-        <div class="col-12 text-center text-info">
-          <div class="devise-messages">
-            <%= message %>
-          </div>
+        <div class="devise-messages">
+          <%= message %>
         </div>
       </div>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 <% end %>

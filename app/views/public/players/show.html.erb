@@ -20,7 +20,7 @@
       <p>身長:<%= @player.player_height %></p>
       <p>体重:<%= @player.player_weight %></p>
       <p>ポジション:<% @player.tags.each do |tag| %>
-                      <%= tag.position %>
+                      [<%= tag.position %>]
                     <% end %>
       </p>
       <p>管理人から一言:<%= @player.player_introduction %></p>
