@@ -14,7 +14,7 @@ class Public::PostsController < ApplicationController
     @post1.player_id = @player.id
     #binding.pry
     if @post1.save
-      redirect_to player_posts_path(@player.id), notice: '投稿を追加しました。'
+      redirect_to player_posts_path(@player.id), notice: 'レビューを投稿しました。'
     else
       @user = current_user
       @player = Player.find(params[:player_id])
@@ -46,7 +46,7 @@ class Public::PostsController < ApplicationController
     @player = Player.find(params[:player_id])
     @post = @player.posts.find(params[:id])
     @post.destroy
-    redirect_to player_posts_path(@player.id), notice: '投稿を削除しました。'
+    redirect_to player_posts_path(@player.id), notice: 'レビューを削除しました。'
   end
   
   private

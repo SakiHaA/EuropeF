@@ -6,16 +6,18 @@
     </div>
   </div>
   
+  <hr>
+  
   <div class="row py-4">
     <div class="table-responsive-xl">
       <table class="table border-top border-bottom text-nowrap offset-1">
-        <thead class ="bg-light">
+        <thead class="bg-light">
           <tr>
-            <th>コメントした元の投稿ID</th>
-            <th>コメントした元の投稿内容</th>
+            <th>コメントした元のレビューID</th>
+            <th>コメントした元のレビュー内容</th>
             <th>コメントした日時</th>
             <th>コメントの内容</th>
-            <th>コメントした投稿の詳細ページ</th>
+            <th>コメントしたレビューの詳細ページ</th>
           </tr>
         </thead>
         <tbody>
@@ -33,9 +35,17 @@
     </div>
   </div>
   
+  <hr>
+  
   <div class="row py-3">
     <div class="col-12 text-center">
       <%= link_to "マイページへ戻る", admin_user_path(@user.id), class: "btn btn-secondary" %>
+    </div>
+  </div>
+  
+  <div class="row py-3">
+    <div class="col-12 text-center">
+      <%= link_to "トップページへ", admin_root_path, class: "btn btn-secondary" %>
     </div>
   </div>
 

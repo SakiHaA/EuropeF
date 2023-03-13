@@ -16,7 +16,7 @@ class Admin::PostsController < ApplicationController
     @player = Player.find(params[:player_id])
     @post = @player.posts.find(params[:id])
     @post.destroy
-    redirect_to admin_player_posts_path(@player.id), notice: '投稿を削除しました。'
+    redirect_to admin_player_posts_path(@player.id), notice: 'レビューを削除しました。'
   end
   
   def search

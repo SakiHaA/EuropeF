@@ -9,33 +9,58 @@
   <hr>
   
   <div class="row">
-    <div class="col-7 offset-2">
+    <div class="col-7 offset-3">
       <%= @player.player_image.html_safe %>
     </div>
-    <div class="col-3">
-      <br>
-      <br>
-      <p>国籍:<%= @player.player_nationality %></p>
-      <p>年齢:<%= @player.player_age %></p>
-      <p>身長:<%= @player.player_height %></p>
-      <p>体重:<%= @player.player_weight %></p>
-      <p>ポジション:<% @player.tags.each do |tag| %>
-                      [<%= tag.position %>]
-                    <% end %>
-      </p>
-      <p>管理人から一言:<%= @player.player_introduction %></p>
-      <br>
-      <br>
-      <br>
-      <br>
-      <h5 class="text-primary">
-        <%= link_to player_posts_path(@player.id) do %>
-          <span>
-            >>この選手のスレッドへ
-          </span>
-        <% end %>
-      </h5>
+  </div>
+  
+  <hr>
+  
+  <div class="row pt-3">
+    <div class="col-9 offset-1">
+      <h3><%= @player.player_name %>の選手情報</h3>
     </div>
+  </div>
+  <div class="row pt-4">
+    <div class="col-7 offset-5">
+      国籍: <%= @player.player_nationality %>
+    </div>
+  </div>
+  <div class="row pt-4">
+    <div class="col-7 offset-5">
+      年齢: <%= @player.player_age %>
+    </div>
+  </div>
+  <div class="row pt-4">
+    <div class="col-7 offset-5">
+      身長: <%= @player.player_height %>
+    </div>
+  </div>
+  <div class="row pt-4">
+    <div class="col-7 offset-5">
+      体重: <%= @player.player_weight %>
+    </div>
+  </div>
+  <div class="row pt-4">
+    <div class="col-7 offset-5">
+      ポジション: <% @player.tags.each do |tag| %>
+                    [<%= tag.position %>]
+                  <% end %>
+    </div>
+  </div>
+  <div class="row pt-4">
+    <div class="col-7 offset-5">
+      管理人から一言: <%= @player.player_introduction %>
+    </div>
+  </div>
+  <div class="row pt-4">
+    <h5 class="col-11 text-right">
+      <%= link_to player_posts_path(@player.id) do %>
+        <span class="text-info">
+          >>この選手のレビュー一覧へ
+        </span>
+      <% end %>
+    </h5>
   </div>
   
   <hr>

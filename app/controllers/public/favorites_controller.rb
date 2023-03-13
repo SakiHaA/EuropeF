@@ -11,7 +11,7 @@ class Public::FavoritesController < ApplicationController
     favorite = current_user.favorites.new(post_id: post.id)
     #binding.pry
     favorite.save
-    redirect_to request.referer, notice: 'いいねを追加しました。'
+    redirect_to request.referer, notice: 'お気に入りに追加しました。'
   end
 
   def destroy
@@ -19,7 +19,7 @@ class Public::FavoritesController < ApplicationController
     favorite = current_user.favorites.find_by(post_id: post.id)
     #binding.pry
     favorite.destroy
-    redirect_to request.referer, notice: "いいねを削除しました。"
+    redirect_to request.referer, notice: "お気に入りから削除しました。"
   end
   
   private

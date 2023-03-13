@@ -9,7 +9,7 @@
   <hr>
   
   <div class="row pt-2">
-    <div class="col-12 text-right">
+    <div class="col-11 text-right">
       <%= form_tag players_path, method: :get, class: "boards__searchForm" do %>
         <%= select_tag :tag_id, options_from_collection_for_select(Tag.all, :id, :position, params[:tag_id]),
           {
@@ -22,10 +22,10 @@
   
   <% @players.each do |player| %>
     <div class="row pt-5 pb-1">
-      <div class="col-8 text-left">
+      <div class="col-7 offset-1">
         <h4><%= player.player_name %></h4>
       </div>
-      <div class="col-4 text-right">
+      <div class="col-2 offset-2">
         <h4>
           <% player.tags.each do |tag| %>
             [<%= tag.position %>]
@@ -33,15 +33,15 @@
         </h4>
       </div>
     </div>
-    <div class="row pt-2">
-      <div class="col-7 offset-2">
+    <div class="row pt-3">
+      <div class="col-7 offset-3">
         <%= player.player_image.html_safe %>
       </div>
     </div>
-    <div class="row pt-2">
-      <h5 class="col-12 text-right text-primary">
+    <div class="row pt-3">
+      <h5 class="col-11 text-right">
         <%= link_to player_path(player.id) do %>
-          <span>
+          <span class="text-info">
             >><%= player.player_name %>の選手情報へ
           </span>
         <% end %>

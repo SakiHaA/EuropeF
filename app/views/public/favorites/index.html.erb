@@ -2,19 +2,21 @@
   
   <div class="row">
     <div class="col-11 offset-1">
-      <h2><%= @user.user_name %>のいいね一覧</h2>
+      <h2><%= @user.user_name %>のお気に入り一覧</h2>
     </div>
   </div>
   
-  <div class ="row py-4">
+  <hr>
+  
+  <div class="row py-4">
     <div class="table-responsive-xl">
-      <table class ="table border-top border-bottom text-nowrap offset-lg-3">
-        <thead class ="bg-light">
+      <table class="table border-top border-bottom text-nowrap offset-2">
+        <thead class="bg-light">
           <tr>
-            <th>いいねした元の投稿ID</th>
-            <th>いいねした元の投稿内容</th>
-            <th>いいねした日時</th>
-            <th>いいねした投稿の詳細ページ</th>
+            <th>お気に入りしたレビューのID</th>
+            <th>お気に入りしたレビューの内容</th>
+            <th>お気に入りした日時</th>
+            <th>お気に入りしたレビューの詳細ページ</th>
           </tr>
         </thead>
         <tbody>
@@ -31,9 +33,17 @@
     </div>
   </div>
   
+  <hr>
+  
   <div class="row py-3">
     <div class="col-12 text-center">
       <%= link_to "マイページへ戻る", user_path(@user.id), class: "btn btn-secondary" %>
+    </div>
+  </div>
+  
+  <div class="row py-3">
+    <div class="col-12 text-center">
+      <%= link_to "トップページへ", root_path, class: "btn btn-secondary" %>
     </div>
   </div>
 

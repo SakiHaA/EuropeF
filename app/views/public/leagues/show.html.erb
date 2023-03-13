@@ -9,7 +9,7 @@
   <hr>
   
   <div class="row">
-    <div class="col-7 offset-2">
+    <div class="col-7 offset-3">
       <%= @league.league_image.html_safe %>
     </div>
   </div>
@@ -17,26 +17,26 @@
   <hr>
   
   <div class="row pt-3">
-    <div class="col-11 offset-1">
-      <h2><%= @league.league_name %>のチーム一覧</h2>
+    <div class="col-9 offset-1">
+      <h4><%= @league.league_name %>のチーム一覧</h4>
     </div>
   </div>
   
   <% @teams.each do |team| %>
-    <div class="row pt-4">
-      <div class="col-12 text-left">
+    <div class="row pt-5 pb-1">
+      <div class="col-10 offset-2">
         <h4><%= team.team_name %></h4>
       </div>
     </div>
-    <div class="row pt-1">
-      <div class="col-7 offset-2">
+    <div class="row pt-3">
+      <div class="col-7 offset-3">
         <%= team.team_image.html_safe %>
       </div>
     </div>
-    <div lass="row pt-2">
-      <h5 class="col-12 text-right text-primary">
+    <div lass="row pt-3">
+      <h5 class="col-11 text-right">
         <%= link_to team_path(team.id) do %>
-          <span>
+          <span class="text-info">
             >><%= team.team_name %>の詳細へ
           </span>
         <% end %>

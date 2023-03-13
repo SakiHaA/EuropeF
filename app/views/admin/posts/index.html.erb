@@ -2,14 +2,14 @@
   
   <div class="row">
     <div class="col-11 offset-1">
-      <h2><%= @player.player_name %>のスレッド</h2>
+      <h2><%= @player.player_name %>のレビュー一覧</h2>
     </div>
   </div>
   
   <hr>
   
   <div class="row">
-    <div class="col-7 offset-2">
+    <div class="col-7 offset-3">
       <%= @player.player_image.html_safe %>
     </div>
   </div>
@@ -19,38 +19,40 @@
   <%= form_with url: admin_search_path, method: :get, local: true do |f| %>
     <div class="search-form">
       <div class="row py-3">
-        <div class="col-5 col-lg-3">
+        <div class="col-5 col-lg-3 offset-3">
           <%= f.text_field :keyword, placeholder: "レビュー内容検索", value: @keyword, class: "form-control" %>
           <%= f.hidden_field :player_id, value: @player.id %>
         </div>
-        <div class="col-4">
-          <%= f.submit "検索" , class: "btn btn-primary"%>
+        <div class="col-3">
+          <%= f.submit "検索", class: "btn btn-primary" %>
         </div>
       </div>
     </div>
   <% end %>
   
   <% @posts.each do |post| %>
-    <div class="row pt-4">
-      <div class="col-12">
+    <div class="row pt-5">
+      <div class="col-11 offset-1">
         <span><%= post.id %>:</span>
+        <span class="text-muted">ユーザー名: </span>
         <span class="text-success"><%= post.user.user_name %></span>
-        <span class="text-muted">投稿日時:<%= post.created_at.strftime('%Y/%m/%d %H:%M') %></span>
-        <span class="text-muted">対戦相手:<%= post.team.team_name %></span>
-        <span class="text-muted">対戦日:<%= post.game_date %></span>
-        <span class="text-muted">スタジアム:<%= post.stadium_i18n %></span>
+        <span class="text-muted">レビュー日時: <%= post.created_at.strftime('%Y/%m/%d %H:%M') %></span>
+        <span class="text-muted">対戦相手: <%= post.team.team_name %></span>
+        <span class="text-muted">対戦日: <%= post.game_date %></span>
+        <span class="text-muted">スタジアム: <%= post.stadium_i18n %></span>
+        <span class="text-primary">お気に入り数: <%= post.favorites.count %></span>
       </div>
     </div>
     
-    <div class="row pt-4">
-      <div class="col-8 offset-1">
+    <div class="row pt-5">
+      <div class="col-6 offset-4">
         レビュー内容: <span class="font-weight-bold"><%= post.contents %></sapn>
       </div>
     </div>
-    <div class="row">
-      <h5 class="col-8 offset-3 text-primary">
+    <div class="row pt-4">
+      <h5 class="col-11 text-right">
         <%= link_to admin_player_post_path(@player.id, post.id) do %>
-          <span>
+          <span class="text-info">
             >>このレビューのコメントへ
           </span>
         <% end %>
@@ -59,7 +61,7 @@
   <% end %>
   
   <hr>
-    
+  
   <div class="row py-3">
     <div class="col-12 text-center">
       <%= link_to "選手の詳細へ戻る", admin_player_path(@player.id), class: "btn btn-secondary" %>
