@@ -284,8 +284,5 @@ DEPENDENCIES
   webdrivers
   webpacker (~> 5.0)
 
-RUBY VERSION
-   ruby 3.1.2p20
-
 BUNDLED WITH
    1.17.3
