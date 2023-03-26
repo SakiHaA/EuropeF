@@ -1,5 +1,4 @@
 <div class="container">
-  
   <div class ="row">
     <div class="col-11 offset-1">
       <h2><%= @league.league_name %></h2>
@@ -33,7 +32,7 @@
         <%= team.team_image.html_safe %>
       </div>
     </div>
-    <div lass="row pt-3">
+    <div class="row pt-3">
       <h5 class="col-11 text-right">
         <%= link_to team_path(team.id) do %>
           <span class="text-info">
@@ -57,5 +56,4 @@
       <%= link_to "トップページへ", root_path, class: "btn btn-secondary" %>
     </div>
   </div>
-
 </div>

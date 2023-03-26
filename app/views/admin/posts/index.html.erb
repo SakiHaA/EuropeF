@@ -1,5 +1,4 @@
 <div class="container">
-  
   <div class="row">
     <div class="col-11 offset-1">
       <h2><%= @player.player_name %>のレビュー一覧</h2>
@@ -20,7 +19,7 @@
     <div class="search-form">
       <div class="row py-3">
         <div class="col-5 col-lg-3 offset-3">
-          <%= f.text_field :keyword, placeholder: "レビュー内容検索", value: @keyword, class: "form-control" %>
+          <%= f.text_field :keyword, placeholder: "レビュー内容, 対戦日を検索", value: @keyword, class: "form-control" %>
           <%= f.hidden_field :player_id, value: @player.id %>
         </div>
         <div class="col-3">
@@ -36,7 +35,7 @@
         <span><%= post.id %>:</span>
         <span class="text-muted">ユーザー名: </span>
         <span class="text-success"><%= post.user.user_name %></span>
-        <span class="text-muted">レビュー日時: <%= post.created_at.strftime('%Y/%m/%d %H:%M') %></span>
+        <span class="text-muted">レビュー投稿日: <%= post.created_at.strftime('%Y-%m-%d') %></span>
         <span class="text-muted">対戦相手: <%= post.team.team_name %></span>
         <span class="text-muted">対戦日: <%= post.game_date %></span>
         <span class="text-muted">スタジアム: <%= post.stadium_i18n %></span>
@@ -73,5 +72,4 @@
       <%= link_to "トップページへ戻る", admin_root_path, class: "btn btn-secondary" %>
     </div>
   </div>
-  
 </div>

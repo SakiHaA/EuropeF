@@ -1,5 +1,4 @@
 <div class="container">
-  
   <div class="row">
     <div class="col-11 offset-1">
       <h2><%= @user.user_name %>のお気に入り一覧</h2>
@@ -8,9 +7,9 @@
   
   <hr>
   
-  <div class="row py-4">
+  <div class="row py-3">
     <div class="table-responsive-xl">
-      <table class="table border-top border-bottom text-nowrap offset-2">
+      <table class="table text-nowrap offset-2">
         <thead class="bg-light">
           <tr>
             <th>お気に入りしたレビューのID</th>
@@ -46,5 +45,4 @@
       <%= link_to "トップページへ", root_path, class: "btn btn-secondary" %>
     </div>
   </div>
-
 </div>

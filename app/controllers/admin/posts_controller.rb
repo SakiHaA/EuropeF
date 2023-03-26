@@ -21,12 +21,12 @@ class Admin::PostsController < ApplicationController
   
   def search
     @posts = Post.search(params[:keyword])
+    #pp @posts
     @keyword = params[:keyword]
     @player = Player.find(params[:player_id])
     flash.now[:notice] = '検索結果が出ました。'
     render "index"
   end
-
 
   private
   def post_params

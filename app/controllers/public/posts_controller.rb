@@ -33,6 +33,7 @@ class Public::PostsController < ApplicationController
     @posts = Post.search(params[:keyword])
     @keyword = params[:keyword]
     @player = Player.find(params[:player_id])
+    flash.now[:notice] = '検索結果が出ました。'
     render "index"
   end
 

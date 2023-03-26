@@ -14,7 +14,6 @@ class Post < ApplicationRecord
   end
 
   def self.search(keyword)
-    where(["contents like?", "%#{keyword}%"])
+    where(["contents like ? or game_date like ?", "%#{keyword}%" , "%#{keyword}%"])
   end
-  
 end
