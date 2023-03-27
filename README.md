@@ -17,7 +17,6 @@
 ### 主な利用シーン
 - ある試合の試合中や試合後に、他の人の意見を調べたいとき
 - 1選手の情報を効率よく得たいとき
-- 所属チームや、移籍先を調べたいとき
 
 ## 設計書
 - ER図 => https://drive.google.com/file/d/1OzK76kapG_vNOLKJEf-TZ5-w7A0aaAAA/view?usp=sharing
