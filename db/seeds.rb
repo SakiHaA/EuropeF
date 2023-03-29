@@ -14,5 +14,5 @@ Tag.create([
     { position:'FW' },
     { position:'MF' },
     { position:'DF' },
-    { position:'GK' },
+    { position:'GK' }
     ])
