@@ -47,7 +47,7 @@
     <div class="row py-4">
       <div class="col-4 col-md-3 offset-1 offset-md-3"><%= f.label :tag_ids, "ポジション" %></div>
       <div class="col-1">
-        <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :position do |tag| %>
+        <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :position) do |tag| %>
           <%= tag.label do %>
             <%= tag.check_box %>
             <%= tag.text %>
